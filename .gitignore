@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
@@ -29,3 +30,20 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Build files
+/build
+/dist
+
+# Cache
+.cache
+.temp
+.tmp
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Misc
+*.pem
+.DS_Store
+Thumbs.db

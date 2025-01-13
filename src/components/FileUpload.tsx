@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Loader2, Upload } from "lucide-react";
 import { DailyReport } from '@/types/report';
-import * as XLSX from 'xlsx';
+import * as ExcelJS from 'exceljs';
 
 interface FileUploadProps {
     onDataImported: (data: DailyReport[], fileName: string) => void;
@@ -16,27 +16,32 @@ export const FileUpload = ({ onDataImported }: FileUploadProps) => {
 
     const processExcelFile = async (file: File) => {
         try {
-            const data = await file.arrayBuffer();
-            const workbook = XLSX.read(data);
-            const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-            const jsonData = XLSX.utils.sheet_to_json(worksheet, { 
-                header: 1,
-                raw: false,
-                dateNF: 'yyyy-mm-dd'
+            const workbook = new ExcelJS.Workbook();
+            const arrayBuffer = await file.arrayBuffer();
+            await workbook.xlsx.load(arrayBuffer);
+            
+            const worksheet = workbook.getWorksheet(1);
+            if (!worksheet) {
+                throw new Error('Planilha não encontrada');
+            }
+
+            const jsonData: any[][] = [];
+            worksheet.eachRow((row, rowNumber) => {
+                const rowData = row.values;
+                // ExcelJS começa do índice 1, então removemos o primeiro item vazio
+                rowData.shift();
+                jsonData.push(rowData);
             });
 
-            // Log para debug
-            console.log('Dados lidos do arquivo:', jsonData);
-
-            if (jsonData.length > 0) {
-                const reports = (jsonData as any[][]).slice(1).map((row): DailyReport => ({
-                    Nome_Funcionario: row[0] || '',
-                    Contratos_Resolvidos: parseInt(row[1]) || 0,
-                    Pendentes_Receptivo: parseInt(row[2]) || 0,
-                    Pendentes_Ativo: parseInt(row[3]) || 0,
-                    Quitados: parseInt(row[4]) || 0,
-                    Aprovados: parseInt(row[5]) || 0,
-                    Data_Relatorio: new Date(row[6]),
+            if (jsonData.length > 1) { // Verificamos se há dados além do cabeçalho
+                const reports = jsonData.slice(1).map((row): DailyReport => ({
+                    Nome_Funcionario: String(row[0] || ''),
+                    Contratos_Resolvidos: Number(row[1]) || 0,
+                    Pendentes_Receptivo: Number(row[2]) || 0,
+                    Pendentes_Ativo: Number(row[3]) || 0,
+                    Quitados: Number(row[4]) || 0,
+                    Aprovados: Number(row[5]) || 0,
+                    Data_Relatorio: row[6] instanceof Date ? row[6] : new Date(),
                 }));
                 onDataImported(reports, file.name);
             } else {
@@ -53,14 +58,14 @@ export const FileUpload = ({ onDataImported }: FileUploadProps) => {
         setError(null);
 
         try {
-            const file = acceptedFiles[0];
-            if (!file) {
+            if (acceptedFiles.length === 0) {
                 throw new Error('Nenhum arquivo selecionado');
             }
 
+            const file = acceptedFiles[0];
             await processExcelFile(file);
-        } catch (err: any) {
-            setError(err.message || 'Erro ao processar arquivo');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Erro ao processar arquivo');
         } finally {
             setLoading(false);
         }
@@ -70,53 +75,51 @@ export const FileUpload = ({ onDataImported }: FileUploadProps) => {
         onDrop,
         accept: {
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
-            'application/vnd.ms-excel': ['.xls'],
-            'text/csv': ['.csv']
+            'application/vnd.ms-excel': ['.xls']
         },
-        multiple: false
+        maxFiles: 1
     });
 
     return (
-        <div className="space-y-4">
+        <div className="w-full max-w-2xl mx-auto p-4">
             <div
                 {...getRootProps()}
-                className={`
-                    border-2 border-dashed rounded-lg p-8
-                    flex flex-col items-center justify-center
-                    cursor-pointer transition-colors
-                    ${isDragActive ? 'border-primary bg-primary/10' : 'border-gray-300'}
-                `}
+                className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
+                    ${isDragActive ? 'border-primary bg-primary/10' : 'border-gray-300 hover:border-primary'}`}
             >
                 <input {...getInputProps()} />
-                <Upload className="h-10 w-10 mb-4 text-gray-400" />
-                <div className="text-center">
-                    {isDragActive ? (
-                        <p>Solte o arquivo aqui...</p>
-                    ) : (
-                        <>
-                            <p className="text-lg font-medium">Arraste e solte seu arquivo aqui</p>
-                            <p className="text-sm text-gray-500">ou clique para selecionar</p>
-                            <p className="text-xs text-gray-400 mt-2">
-                                Formatos suportados: XLSX, XLS, CSV
-                            </p>
-                        </>
-                    )}
-                </div>
+                <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+                {isDragActive ? (
+                    <p className="text-lg">Solte o arquivo aqui...</p>
+                ) : (
+                    <p className="text-lg">Arraste um arquivo Excel ou clique para selecionar</p>
+                )}
+                <p className="text-sm text-gray-500 mt-2">Apenas arquivos .xlsx ou .xls</p>
             </div>
 
+            {loading && (
+                <div className="mt-4 text-center">
+                    <Loader2 className="w-6 h-6 animate-spin inline-block" />
+                    <span className="ml-2">Processando arquivo...</span>
+                </div>
+            )}
+
             {error && (
-                <Alert variant="destructive">
+                <Alert variant="destructive" className="mt-4">
                     <AlertTitle>Erro</AlertTitle>
                     <AlertDescription>{error}</AlertDescription>
                 </Alert>
             )}
 
-            {loading && (
-                <div className="flex items-center justify-center">
-                    <Loader2 className="h-6 w-6 animate-spin" />
-                    <span className="ml-2">Processando arquivo...</span>
-                </div>
-            )}
+            <div className="mt-4 text-center">
+                <Button
+                    {...getRootProps()}
+                    variant="outline"
+                    disabled={loading}
+                >
+                    Selecionar Arquivo
+                </Button>
+            </div>
         </div>
     );
 };

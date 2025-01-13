@@ -1,38 +1,27 @@
-# Sistema de Relatório de Demandas
+# Sistema de Controle de Demandas
 
-Um sistema moderno e eficiente para gerenciamento e visualização de demandas, desenvolvido com React e TypeScript.
+Sistema web para controle e análise de contratos, com foco em relatórios diários e auditoria.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-- **Dashboard Intuitivo**: Visualização clara das demandas por funcionário
-- **Estatísticas em Tempo Real**: Acompanhamento de:
-  - Contratos Resolvidos
-  - Pendências (Receptivo e Ativo)
-  - Análises do Dia
-  - Status de Quitação e Aprovação
-- **Filtros Avançados**: Por banco, grupo e status
-- **Exportação de Dados**: Funcionalidade para exportar relatórios em Excel
+- Dashboard de análise diária por grupos e funcionários
+- Monitoramento de contratos (Quitados, Pendentes, Aprovados)
+- Sistema de auditoria para rastreamento de alterações
+- Interface responsiva e moderna
 
-## 💻 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - React
 - TypeScript
 - Tailwind CSS
-- Shadcn/ui
-- Recharts para visualização de dados
-- React Router para navegação
-- TanStack Query para gerenciamento de estado
+- Vite
 
-## 🎯 Objetivo do Projeto
+## Requisitos
 
-Este projeto foi desenvolvido para otimizar o gerenciamento de demandas em um ambiente corporativo, oferecendo uma interface moderna e funcional que permite:
+- Node.js 16+
+- npm ou yarn
 
-- Acompanhamento em tempo real do status das demandas
-- Visualização clara do desempenho individual dos funcionários
-- Geração de relatórios detalhados
-- Tomada de decisão baseada em dados
-
-## 🔧 Instalação e Uso
+## Instalação
 
 1. Clone o repositório:
 ```bash
@@ -41,35 +30,59 @@ git clone https://github.com/manfullwel/ddemandreport.git
 
 2. Instale as dependências:
 ```bash
-cd ddemandreport
 npm install
 ```
 
-3. Execute o projeto:
+3. Inicie o servidor de desenvolvimento:
 ```bash
 npm run dev
 ```
 
-## 📊 Estrutura do Projeto
+## Estrutura de Arquivos
 
-```
-src/
-  ├── components/         # Componentes React reutilizáveis
-  ├── types/             # Definições de tipos TypeScript
-  ├── data/             # Dados mockados e constantes
-  ├── styles/           # Estilos globais e temas
-  └── routes/           # Configuração de rotas
-```
+- `/src` - Código fonte
+  - `/components` - Componentes React
+  - `/data` - Dados mockados e tipos
+  - `App.tsx` - Componente principal
+  - `main.tsx` - Ponto de entrada
 
-## 🎨 Screenshots
+## Scripts Disponíveis
 
-[Adicione screenshots do seu projeto aqui]
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria build de produção
+- `npm run preview` - Visualiza build de produção
 
-## 📝 Licença
+## Estrutura de Dados
+
+### Relatório Diário (Relatorio_Analise_Diaria.csv)
+- Nome do Funcionário
+- Contratos Resolvidos
+- Pendentes (Receptivo/Ativo)
+- Quitados
+- Aprovados
+- Data do Relatório
+
+### Contratos (Contratos_Gerais.csv)
+- Número do Contrato
+- Nome do Cliente
+- Banco Recebedor
+- Responsável
+- Status do Contrato
+- Data de Atualização
+
+## Contribuição
+
+1. Faça o fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## Licença
 
 MIT
 
-## 👤 Autor
+## Autor
 
 Igor Soares
 
