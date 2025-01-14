@@ -1,114 +1,124 @@
-# Sistema de Controle de Demandas
+# Demand Report - Sistema de Gestão de Demandas em Tempo Real
 
-<div align="center">
+## 🚀 Sobre o Projeto
 
-![Banner do Projeto](https://user-images.githubusercontent.com/YOUR_USER_ID/ddemandreport/main/screenshots/banner.png)
+O Demand Report é uma ferramenta poderosa de gestão e análise de demandas em tempo real, desenvolvida para otimizar o fluxo de trabalho e proporcionar insights valiosos sobre o desempenho da equipe. Inspirada nas necessidades reais do ambiente corporativo e com contribuições valiosas da Ediane Feitoza., que compartilhou sua experiência e visão para tornar esta ferramenta ainda mais eficiente.
 
-### 🚀 Sistema web para controle e análise de contratos
+### 💡 Inspiração e Agradecimentos
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+Um agradecimento especial à Ediane F., cuja experiência e sugestões foram fundamentais para o desenvolvimento desta ferramenta. Suas dicas e insights sobre o fluxo de trabalho diário contribuíram significativamente para a criação de uma solução que realmente atende às necessidades da equipe.
 
-[Demo](https://manfullwel.github.io/ddemandreport/) | [Documentação](#documentação) | [Como Usar](#como-usar)
+## 🌟 Funcionalidades Principais
 
-</div>
+### 1. Dashboard em Tempo Real
+- Visualização instantânea de demandas pendentes e resolvidas
+- Acompanhamento de prioridades
+- Métricas de desempenho atualizadas em tempo real
 
-## ✨ Demonstração
+### 2. Relatório Diário
+- Análise detalhada das atividades do dia
+- Métricas de produtividade individual
+- Status de demandas críticas
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3 align="center">Grupo Julio</h3>
-      <img src="https://raw.githubusercontent.com/manfullwel/ddemandreport/main/screenshots/grupo_julio.png" alt="Grupo Julio" />
-    </td>
-    <td width="50%">
-      <h3 align="center">Grupo Leandro e Adriano</h3>
-      <img src="https://raw.githubusercontent.com/manfullwel/ddemandreport/main/screenshots/grupo_leandro.png" alt="Grupo Leandro e Adriano" />
-    </td>
-  </tr>
-</table>
+### 3. Relatório Geral
+- Visão consolidada do desempenho da equipe
+- Comparativo entre diferentes períodos
+- Análise de tendências e gargalos
 
-## 🎯 Principais Funcionalidades
+### 4. Versão Mobile
+- Acesso completo via dispositivos móveis
+- Notificações em tempo real
+- Interface adaptativa para melhor experiência em smartphones
 
-- 📊 **Dashboard Intuitivo**
-  - Visualização clara das demandas por funcionário
-  - Estatísticas em tempo real
-  - Interface moderna e responsiva
+## 🔥 Diferenciais
 
-- 📈 **Monitoramento Detalhado**
-  - Contratos Resolvidos
-  - Pendentes (Receptivo/Ativo)
-  - Status de Quitação
-  - Aprovações
+1. **Monitoramento em Tempo Real**
+   - Acompanhamento instantâneo de métricas
+   - Alertas de prioridades
+   - Dashboard atualizado automaticamente
 
-- 🔍 **Sistema de Auditoria**
-  - Rastreamento de alterações
-  - Histórico completo
-  - Log de atividades
+2. **Análise Inteligente**
+   - Identificação de padrões
+   - Previsão de gargalos
+   - Sugestões de otimização
 
-## 🛠️ Tecnologias
+3. **Gestão Eficiente**
+   - Distribuição inteligente de demandas
+   - Priorização automática
+   - Histórico completo de atividades
 
-- **Frontend:**
-  - React
-  - TypeScript
-  - Tailwind CSS
-  - Vite
+## 📱 Versão Mobile
 
-## 📦 Instalação
+A versão mobile do Demand Report foi desenvolvida pensando na mobilidade e praticidade. Principais características:
 
+- Interface intuitiva e responsiva
+- Acesso rápido às métricas principais
+- Notificações push para demandas urgentes
+- Visualização otimizada de gráficos e relatórios
+- Atualização em tempo real durante o expediente
+
+## 💼 Importância para o Ambiente Corporativo
+
+1. **Produtividade**
+   - Redução do tempo de resposta
+   - Melhor distribuição de tarefas
+   - Identificação de pontos de melhoria
+
+2. **Tomada de Decisão**
+   - Dados precisos em tempo real
+   - Histórico detalhado de atividades
+   - Métricas claras de desempenho
+
+3. **Gestão de Equipe**
+   - Acompanhamento individual e coletivo
+   - Identificação de necessidades de treinamento
+   - Reconhecimento de alto desempenho
+
+## 🛠️ Tecnologias Utilizadas
+
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Shadcn/ui
+- Node.js
+- Git
+
+## 📦 Instalação e Uso
+
+1. Clone o repositório:
 ```bash
-# Clone o repositório
 git clone https://github.com/manfullwel/ddemandreport.git
+```
 
-# Entre no diretório
+2. Instale as dependências:
+```bash
 cd ddemandreport
-
-# Instale as dependências
 npm install
+```
 
-# Inicie o servidor de desenvolvimento
+3. Execute o projeto:
+```bash
 npm run dev
 ```
 
-## 📚 Documentação
+## 🔄 Próximas Atualizações
 
-### Estrutura de Dados
+- [ ] Integração com APIs externas
+- [ ] Sistema de notificações avançado
+- [ ] Módulo de relatórios personalizados
+- [ ] Análise preditiva de demandas
+- [ ] Expansão da versão mobile
 
-#### 📄 Relatório Diário (Relatorio_Analise_Diaria.csv)
-- Nome do Funcionário
-- Contratos Resolvidos
-- Pendentes (Receptivo/Ativo)
-- Quitados
-- Aprovados
-- Data do Relatório
+## 👥 Contribuições
 
-#### 📄 Contratos (Contratos_Gerais.csv)
-- Número do Contrato
-- Nome do Cliente
-- Banco Recebedor
-- Responsável
-- Status do Contrato
-- Data de Atualização
+Este projeto foi enriquecido com as valiosas contribuições de profissionais da área, em especial:
 
-## 🤝 Contribuição
+- **Ediane F.** - Contribuiu com insights fundamentais sobre o fluxo de trabalho e necessidades reais do ambiente corporativo, ajudando a moldar uma ferramenta verdadeiramente útil e eficiente.
 
-1. Faça o fork do projeto
-2. Crie sua feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📝 Licença
+## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 👨‍💻 Autor
-
-Igor Soares
-
 ---
 
-<div align="center">
-  <sub>Feito com ❤️ por Igor Soares</sub>
-</div>
+Desenvolvido com 💙 para otimizar o gerenciamento de demandas e impulsionar a produtividade das equipes.
