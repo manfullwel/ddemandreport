@@ -8,7 +8,7 @@ export interface Employee {
   settled: boolean;
   approved: boolean;
   receptive: boolean;
-  group: "JULIO" | "ADRIANO/LEANDRO";
+  group: 'JULIO' | 'ADRIANO/LEANDRO';
 }
 
 export interface Contract {
@@ -21,29 +21,21 @@ export interface Contract {
   lastUpdate: string;
 }
 
-export type ContractStatus = 
-  | "Analisar"
-  | "Pendente"
-  | "Em Processamento"
-  | "Quitado"
-  | "Cancelado";
+export type ContractStatus = 'Analisar' | 'Pendente' | 'Em Processamento' | 'Quitado' | 'Cancelado';
 
-export type DemandStatus = 
-  | "Resolvido"
-  | "Pendente Receptivo"
-  | "Pendente Ativo";
+export type DemandStatus = 'Resolvido' | 'Pendente Receptivo' | 'Pendente Ativo';
 
 export const BANKS = [
-  "Bradesco",
-  "Santander",
-  "BV Financiamento",
-  "Omni",
-  "Itaú",
-  "Banco do Brasil",
-  "Caixa Econômica",
-  "Safra",
-  "Pan",
-  "BMG"
+  'Bradesco',
+  'Santander',
+  'BV Financiamento',
+  'Omni',
+  'Itaú',
+  'Banco do Brasil',
+  'Caixa Econômica',
+  'Safra',
+  'Pan',
+  'BMG',
 ] as const;
 
 export interface ImportResult {
@@ -67,7 +59,7 @@ export interface AnalysisResult {
       pendentesAtivo: number;
       quitados: number;
       aprovados: number;
-    }
+    };
   };
   totalStats: {
     quitadosTotal: number;

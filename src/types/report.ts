@@ -1,39 +1,45 @@
 export interface DailyReport {
-    Nome_Funcionario: string;
-    Contratos_Resolvidos: number;
-    Pendentes_Receptivo: number;
-    Pendentes_Ativo: number;
-    Quitados: number;
-    Aprovados: number;
-    Data_Relatorio: Date;
+  date: Date;
+  totalDemands: number;
+  completedDemands: number;
+  pendingDemands: number;
+  inProgressDemands: number;
+  cancelledDemands: number;
+  averageResolutionTime: number;
 }
 
-export interface Demanda {
-    Nome: string;
-    Grupo: string;
-    Banco: string;
-    Status: string;
-    Prioridade: string;
-    Analises_do_Dia: number;
-    Quitado: boolean;
-    Aprovado: boolean;
-    Receptivo: boolean;
+export interface DemandSummary {
+  total: number;
+  completed: number;
+  pending: number;
+  inProgress: number;
+  cancelled: number;
+  averageResolutionTime: number;
+}
+
+export interface Demand {
+  id: string;
+  title: string;
+  description: string;
+  status: 'pending' | 'in_progress' | 'completed' | 'cancelled';
+  priority: 'low' | 'medium' | 'high';
+  createdAt: Date;
+  updatedAt: Date;
+  completedAt?: Date;
+  assignedTo?: string;
+  category?: string;
+  tags?: string[];
 }
 
 export interface ReportFilters {
-    startDate?: Date;
-    endDate?: Date;
-    funcionario?: string;
-    banco?: string;
-    grupo?: string;
-    status?: string;
+  date: Date | null;
+  status: string;
 }
 
 export const INITIAL_FILTERS: ReportFilters = {
-    startDate: new Date('2025-01-01'),
-    endDate: new Date('2025-01-15'),
-    funcionario: undefined,
-    banco: undefined,
-    grupo: undefined,
-    status: undefined
+  date: null,
+  status: '',
 };
+
+export type DemandStatus = 'pending' | 'in_progress' | 'completed' | 'cancelled';
+export type DemandPriority = 'low' | 'medium' | 'high';

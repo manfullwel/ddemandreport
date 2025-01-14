@@ -1,75 +1,60 @@
-import React, { useState } from 'react';
-import { DailyReport as DailyReportType } from '../types/report';
-import { SpreadsheetGenerator } from './SpreadsheetGenerator';
+import React, { useState, useCallback, useMemo } from 'react';
 import { DashboardFilters } from './DashboardFilters';
-import { ReportFilters, INITIAL_FILTERS } from '../types/report';
+import { DailyChart } from './DailyChart';
 import { DataTable } from './DataTable';
 import { SummaryCards } from './SummaryCards';
-import { Contract, Employee } from '../types/spreadsheet';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { generateSpreadsheetData } from '../utils/mockDataGenerator';
+import { ReportFilters, INITIAL_FILTERS } from '@/types/report';
+import { ErrorBoundary } from './ErrorBoundary';
+import { errorHandler } from '@/utils/errorHandler';
 
-export const Dashboard = () => {
-    const [filters, setFilters] = useState<ReportFilters>(INITIAL_FILTERS);
-    const [allData, setAllData] = useState<DailyReportType[]>([]);
-    const [fileName, setFileName] = useState<string>();
-    const [uploadDate, setUploadDate] = useState<Date>();
-    const [activeTab, setActiveTab] = useState('summary');
-    
-    // Dados de exemplo para visualização
-    const { contracts, employees } = generateSpreadsheetData();
+export const Dashboard: React.FC = () => {
+  const [filters, setFilters] = useState<ReportFilters>(INITIAL_FILTERS);
 
-    const handleFilterChange = (newFilters: ReportFilters) => {
-        setFilters(newFilters);
-    };
+  const handleFilterChange = useCallback((newFilters: ReportFilters) => {
+    try {
+      setFilters(newFilters);
+    } catch (error) {
+      errorHandler.logError(error as Error, {
+        component: 'Dashboard',
+        action: 'handleFilterChange',
+      });
+    }
+  }, []);
 
-    return (
-        <div className="p-4 space-y-8">
-            <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold">Dashboard</h1>
-                <SpreadsheetGenerator />
-            </div>
-            
-            <div className="mb-6">
-                <DashboardFilters onFilterChange={handleFilterChange} />
-            </div>
+  // Memoize components to prevent unnecessary re-renders
+  const memoizedFilters = useMemo(
+    () => <DashboardFilters filters={filters} onFilterChange={handleFilterChange} />,
+    [filters, handleFilterChange]
+  );
 
-            <SummaryCards contracts={contracts} employees={employees} />
-            
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
-                <TabsList>
-                    <TabsTrigger value="summary">Resumo</TabsTrigger>
-                    <TabsTrigger value="contracts">Contratos</TabsTrigger>
-                    <TabsTrigger value="employees">Funcionários</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="summary" className="mt-4">
-                    <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                            <h3 className="text-lg font-semibold mb-2">Últimos Contratos</h3>
-                            <DataTable 
-                                data={contracts.slice(0, 5)} 
-                                type="contracts" 
-                            />
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-semibold mb-2">Funcionários Ativos</h3>
-                            <DataTable 
-                                data={employees.slice(0, 5)} 
-                                type="employees" 
-                            />
-                        </div>
-                    </div>
-                </TabsContent>
-                
-                <TabsContent value="contracts" className="mt-4">
-                    <DataTable data={contracts} type="contracts" />
-                </TabsContent>
-                
-                <TabsContent value="employees" className="mt-4">
-                    <DataTable data={employees} type="employees" />
-                </TabsContent>
-            </Tabs>
+  const memoizedChart = useMemo(() => <DailyChart filters={filters} />, [filters]);
+
+  const memoizedTable = useMemo(() => <DataTable filters={filters} />, [filters]);
+
+  const memoizedSummary = useMemo(() => <SummaryCards filters={filters} />, [filters]);
+
+  return (
+    <ErrorBoundary>
+      <div className="container mx-auto p-4 space-y-6">
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h1 className="text-2xl font-bold mb-6">Dashboard de Demandas</h1>
+          {memoizedFilters}
         </div>
-    );
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {memoizedSummary}
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h2 className="text-xl font-semibold mb-4">Análise Diária</h2>
+          {memoizedChart}
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h2 className="text-xl font-semibold mb-4">Demandas</h2>
+          {memoizedTable}
+        </div>
+      </div>
+    </ErrorBoundary>
+  );
 };

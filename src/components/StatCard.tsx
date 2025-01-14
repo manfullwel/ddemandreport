@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface StatCardProps {
   title: string;
@@ -6,7 +6,7 @@ interface StatCardProps {
   className?: string;
 }
 
-export const StatCard = ({ title, value, className = "" }: StatCardProps) => {
+export const StatCard = ({ title, value, className = '' }: StatCardProps) => {
   return (
     <Card className={`animate-fade-in ${className}`}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

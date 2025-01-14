@@ -1,51 +1,46 @@
-import { Link } from 'react-router-dom';
-import { cn } from "@/lib/utils";
-import { BarChart2, FileSpreadsheet, Home } from 'lucide-react';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-interface NavigationProps {
-    currentPath: string;
-}
+interface NavigationProps {}
 
-export const Navigation = ({ currentPath }: NavigationProps) => {
-    const links = [
-        {
-            href: '/',
-            icon: Home,
-            label: 'Relatório Diário'
-        },
-        {
-            href: '/analytics',
-            icon: BarChart2,
-            label: 'Dashboard'
-        },
-        {
-            href: '/data',
-            icon: FileSpreadsheet,
-            label: 'Dados'
-        }
-    ];
+export const Navigation = () => {
+  const location = useLocation();
 
-    return (
-        <nav className="border-b">
-            <div className="max-w-screen-xl mx-auto px-4">
-                <div className="flex h-14 items-center space-x-4">
-                    {links.map(({ href, icon: Icon, label }) => (
-                        <Link
-                            key={href}
-                            to={href}
-                            className={cn(
-                                "flex items-center space-x-2 px-3 py-2 text-sm font-medium rounded-md",
-                                currentPath === href
-                                    ? "bg-primary text-primary-foreground"
-                                    : "text-muted-foreground hover:bg-muted"
-                            )}
-                        >
-                            <Icon className="h-4 w-4" />
-                            <span>{label}</span>
-                        </Link>
-                    ))}
-                </div>
-            </div>
-        </nav>
-    );
+  const isActive = (path: string) => {
+    return location.pathname === path ? 'bg-blue-700' : '';
+  };
+
+  return (
+    <nav className="bg-blue-600 text-white">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex-shrink-0">
+            <Link to="/" className="text-xl font-bold">
+              Demand Report
+            </Link>
+          </div>
+          <div className="flex space-x-4">
+            <Link
+              to="/"
+              className={`px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 ${isActive('/')}`}
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/reports"
+              className={`px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 ${isActive('/reports')}`}
+            >
+              Relatórios
+            </Link>
+            <Link
+              to="/analytics"
+              className={`px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 ${isActive('/analytics')}`}
+            >
+              Análises
+            </Link>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 };

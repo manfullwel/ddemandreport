@@ -2,15 +2,15 @@ import React from 'react';
 import './App.css';
 
 const mockData = {
-  titulo: "Relatório de Análise Diária",
-  arquivo: "Relatorio_Analise_Diaria.csv",
-  data_atual: "2025-01-13",
+  titulo: 'Relatório de Análise Diária',
+  arquivo: 'Relatorio_Analise_Diaria.csv',
+  data_atual: '2025-01-13',
   grupos: [
     {
-      nome: "Grupo Julio",
+      nome: 'Grupo Julio',
       funcionarios: [
         {
-          nome: "Maria Silva",
+          nome: 'Maria Silva',
           contratos_resolvidos: 15,
           pendentes_receptivo: 5,
           pendentes_ativo: 3,
@@ -19,15 +19,15 @@ const mockData = {
           ultimas_alteracoes: [
             {
               contrato: 123456,
-              campo: "Status_Contrato",
-              valor_antigo: "Pendente",
-              valor_novo: "Quitado",
-              data: "2025-01-13 14:30"
-            }
-          ]
+              campo: 'Status_Contrato',
+              valor_antigo: 'Pendente',
+              valor_novo: 'Quitado',
+              data: '2025-01-13 14:30',
+            },
+          ],
         },
         {
-          nome: "João Santos",
+          nome: 'João Santos',
           contratos_resolvidos: 12,
           pendentes_receptivo: 4,
           pendentes_ativo: 2,
@@ -36,27 +36,27 @@ const mockData = {
           ultimas_alteracoes: [
             {
               contrato: 234567,
-              campo: "Status_Contrato",
-              valor_antigo: "Analisar",
-              valor_novo: "Aprovado",
-              data: "2025-01-13 15:45"
-            }
-          ]
-        }
+              campo: 'Status_Contrato',
+              valor_antigo: 'Analisar',
+              valor_novo: 'Aprovado',
+              data: '2025-01-13 15:45',
+            },
+          ],
+        },
       ],
       estatisticas: {
         total_resolvidos: 27,
         total_pendentes_receptivo: 9,
         total_pendentes_ativo: 5,
         total_quitados: 14,
-        total_aprovados: 13
-      }
+        total_aprovados: 13,
+      },
     },
     {
-      nome: "Grupo Leandro e Adriano",
+      nome: 'Grupo Leandro e Adriano',
       funcionarios: [
         {
-          nome: "Ana Oliveira",
+          nome: 'Ana Oliveira',
           contratos_resolvidos: 18,
           pendentes_receptivo: 6,
           pendentes_ativo: 4,
@@ -65,15 +65,15 @@ const mockData = {
           ultimas_alteracoes: [
             {
               contrato: 345678,
-              campo: "Status_Contrato",
-              valor_antigo: "Pendente",
-              valor_novo: "Quitado",
-              data: "2025-01-13 16:20"
-            }
-          ]
+              campo: 'Status_Contrato',
+              valor_antigo: 'Pendente',
+              valor_novo: 'Quitado',
+              data: '2025-01-13 16:20',
+            },
+          ],
         },
         {
-          nome: "Carlos Pereira",
+          nome: 'Carlos Pereira',
           contratos_resolvidos: 14,
           pendentes_receptivo: 5,
           pendentes_ativo: 3,
@@ -82,23 +82,23 @@ const mockData = {
           ultimas_alteracoes: [
             {
               contrato: 456789,
-              campo: "Banco_Recebedor",
-              valor_antigo: "Santander",
-              valor_novo: "Itaú",
-              data: "2025-01-13 17:15"
-            }
-          ]
-        }
+              campo: 'Banco_Recebedor',
+              valor_antigo: 'Santander',
+              valor_novo: 'Itaú',
+              data: '2025-01-13 17:15',
+            },
+          ],
+        },
       ],
       estatisticas: {
         total_resolvidos: 32,
         total_pendentes_receptivo: 11,
         total_pendentes_ativo: 7,
         total_quitados: 17,
-        total_aprovados: 15
-      }
-    }
-  ]
+        total_aprovados: 15,
+      },
+    },
+  ],
 };
 
 function App() {
@@ -106,15 +106,9 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <header className="mb-8 bg-white rounded-lg shadow-lg p-6">
-          <h1 className="text-3xl font-bold text-gray-900 text-center">
-            {mockData.titulo}
-          </h1>
-          <p className="text-center text-gray-600 mt-2">
-            Arquivo: {mockData.arquivo}
-          </p>
-          <p className="text-center text-gray-500 mt-1">
-            Data: {mockData.data_atual}
-          </p>
+          <h1 className="text-3xl font-bold text-gray-900 text-center">{mockData.titulo}</h1>
+          <p className="text-center text-gray-600 mt-2">Arquivo: {mockData.arquivo}</p>
+          <p className="text-center text-gray-500 mt-1">Data: {mockData.data_atual}</p>
         </header>
 
         <div className="grid grid-cols-1 gap-8">
@@ -129,7 +123,9 @@ function App() {
                   </div>
                   <div className="text-yellow-200">
                     <span className="text-sm opacity-80">Pendentes Receptivo</span>
-                    <p className="text-2xl font-bold">{grupo.estatisticas.total_pendentes_receptivo}</p>
+                    <p className="text-2xl font-bold">
+                      {grupo.estatisticas.total_pendentes_receptivo}
+                    </p>
                   </div>
                   <div className="text-orange-200">
                     <span className="text-sm opacity-80">Pendentes Ativo</span>
@@ -156,23 +152,31 @@ function App() {
                           {funcionario.contratos_resolvidos} contratos hoje
                         </span>
                       </div>
-                      
+
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                         <div className="bg-yellow-50 p-3 rounded-lg">
                           <span className="text-sm text-yellow-600">Pendentes Receptivo</span>
-                          <p className="text-xl font-semibold text-yellow-700">{funcionario.pendentes_receptivo}</p>
+                          <p className="text-xl font-semibold text-yellow-700">
+                            {funcionario.pendentes_receptivo}
+                          </p>
                         </div>
                         <div className="bg-orange-50 p-3 rounded-lg">
                           <span className="text-sm text-orange-600">Pendentes Ativo</span>
-                          <p className="text-xl font-semibold text-orange-700">{funcionario.pendentes_ativo}</p>
+                          <p className="text-xl font-semibold text-orange-700">
+                            {funcionario.pendentes_ativo}
+                          </p>
                         </div>
                         <div className="bg-green-50 p-3 rounded-lg">
                           <span className="text-sm text-green-600">Quitados</span>
-                          <p className="text-xl font-semibold text-green-700">{funcionario.quitados}</p>
+                          <p className="text-xl font-semibold text-green-700">
+                            {funcionario.quitados}
+                          </p>
                         </div>
                         <div className="bg-purple-50 p-3 rounded-lg">
                           <span className="text-sm text-purple-600">Aprovados</span>
-                          <p className="text-xl font-semibold text-purple-700">{funcionario.aprovados}</p>
+                          <p className="text-xl font-semibold text-purple-700">
+                            {funcionario.aprovados}
+                          </p>
                         </div>
                       </div>
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -6,37 +6,64 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import { SpreadsheetActions } from "./SpreadsheetActions";
-import { Employee, Contract, BANKS, DemandStatus, ContractStatus } from "@/types/spreadsheet";
+} from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { SpreadsheetActions } from './SpreadsheetActions';
+import { Employee, Contract, BANKS, DemandStatus, ContractStatus } from '@/types/spreadsheet';
 
 const EMPLOYEE_NAMES = [
-  "Maria Silva", "João Santos", "Ana Oliveira", "Pedro Costa", "Carla Souza",
-  "Lucas Pereira", "Julia Lima", "Rafael Alves", "Beatriz Ferreira", "Marcos Ribeiro",
-  "Patricia Gomes", "Fernando Santos", "Camila Costa", "Ricardo Oliveira", "Mariana Lima",
-  "Bruno Almeida", "Laura Martins", "Gabriel Santos", "Isabella Costa", "Thiago Silva",
-  "Daniela Oliveira", "André Pereira", "Carolina Lima", "Gustavo Santos", "Amanda Costa",
-  "Felipe Souza", "Leticia Silva", "Leonardo Oliveira", "Natalia Lima", "Rodrigo Santos",
-  "Vanessa Costa", "Eduardo Silva", "Fernanda Lima", "Marcelo Santos", "Juliana Costa",
-  "Roberto Oliveira", "Cristina Lima", "Henrique Santos", "Renata Costa", "Paulo Silva"
+  'Maria Silva',
+  'João Santos',
+  'Ana Oliveira',
+  'Pedro Costa',
+  'Carla Souza',
+  'Lucas Pereira',
+  'Julia Lima',
+  'Rafael Alves',
+  'Beatriz Ferreira',
+  'Marcos Ribeiro',
+  'Patricia Gomes',
+  'Fernando Santos',
+  'Camila Costa',
+  'Ricardo Oliveira',
+  'Mariana Lima',
+  'Bruno Almeida',
+  'Laura Martins',
+  'Gabriel Santos',
+  'Isabella Costa',
+  'Thiago Silva',
+  'Daniela Oliveira',
+  'André Pereira',
+  'Carolina Lima',
+  'Gustavo Santos',
+  'Amanda Costa',
+  'Felipe Souza',
+  'Leticia Silva',
+  'Leonardo Oliveira',
+  'Natalia Lima',
+  'Rodrigo Santos',
+  'Vanessa Costa',
+  'Eduardo Silva',
+  'Fernanda Lima',
+  'Marcelo Santos',
+  'Juliana Costa',
+  'Roberto Oliveira',
+  'Cristina Lima',
+  'Henrique Santos',
+  'Renata Costa',
+  'Paulo Silva',
 ];
 
 // Generate 40 fake employees
 const generateFakeEmployees = (): Employee[] => {
-  const statuses: DemandStatus[] = ["Resolvido", "Pendente Receptivo", "Pendente Ativo"];
+  const statuses: DemandStatus[] = ['Resolvido', 'Pendente Receptivo', 'Pendente Ativo'];
   return EMPLOYEE_NAMES.map((name, i) => ({
     id: `emp-${i + 1}`,
     name,
@@ -47,13 +74,13 @@ const generateFakeEmployees = (): Employee[] => {
     settled: Math.random() > 0.5,
     approved: Math.random() > 0.5,
     receptive: Math.random() > 0.7,
-    group: i < 20 ? "JULIO" : "ADRIANO/LEANDRO"
+    group: i < 20 ? 'JULIO' : 'ADRIANO/LEANDRO',
   }));
 };
 
 // Generate fake contracts
 const generateFakeContracts = (employees: Employee[]): Contract[] => {
-  const contractStatuses: ContractStatus[] = ["Analisar", "Pendente", "Quitado"];
+  const contractStatuses: ContractStatus[] = ['Analisar', 'Pendente', 'Quitado'];
   return Array.from({ length: 100 }, (_, i) => {
     const employee = employees[Math.floor(Math.random() * employees.length)];
     return {
@@ -73,21 +100,21 @@ const generateFakeContracts = (employees: Employee[]): Contract[] => {
 export const SpreadsheetGrid = () => {
   const [employees] = useState<Employee[]>(generateFakeEmployees());
   const [contracts] = useState<Contract[]>(generateFakeContracts(employees));
-  const [selectedBank, setSelectedBank] = useState<string>("all");
-  const [selectedTab, setSelectedTab] = useState<string>("employees");
+  const [selectedBank, setSelectedBank] = useState<string>('all');
+  const [selectedTab, setSelectedTab] = useState<string>('employees');
 
-  const filteredEmployees = selectedBank === "all"
-    ? employees
-    : employees.filter(emp => emp.bank === selectedBank);
+  const filteredEmployees =
+    selectedBank === 'all' ? employees : employees.filter((emp) => emp.bank === selectedBank);
 
-  const filteredContracts = selectedBank === "all"
-    ? contracts
-    : contracts.filter(contract => contract.receivingBank === selectedBank);
+  const filteredContracts =
+    selectedBank === 'all'
+      ? contracts
+      : contracts.filter((contract) => contract.receivingBank === selectedBank);
 
   return (
     <div className="space-y-4">
       <SpreadsheetActions employees={employees} contracts={contracts} />
-      
+
       <div className="flex items-center gap-4">
         <label className="font-medium">Filtrar por Banco:</label>
         <Select value={selectedBank} onValueChange={setSelectedBank}>
@@ -96,7 +123,7 @@ export const SpreadsheetGrid = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos</SelectItem>
-            {BANKS.map(bank => (
+            {BANKS.map((bank) => (
               <SelectItem key={bank} value={bank}>
                 {bank}
               </SelectItem>
@@ -134,11 +161,11 @@ export const SpreadsheetGrid = () => {
                     <TableCell>{employee.group}</TableCell>
                     <TableCell>{employee.bank}</TableCell>
                     <TableCell>{employee.status}</TableCell>
-                    <TableCell>{employee.priority ? "Sim" : "Não"}</TableCell>
+                    <TableCell>{employee.priority ? 'Sim' : 'Não'}</TableCell>
                     <TableCell>{employee.dailyAnalysis}</TableCell>
-                    <TableCell>{employee.settled ? "Sim" : "Não"}</TableCell>
-                    <TableCell>{employee.approved ? "Sim" : "Não"}</TableCell>
-                    <TableCell>{employee.receptive ? "Sim" : "Não"}</TableCell>
+                    <TableCell>{employee.settled ? 'Sim' : 'Não'}</TableCell>
+                    <TableCell>{employee.approved ? 'Sim' : 'Não'}</TableCell>
+                    <TableCell>{employee.receptive ? 'Sim' : 'Não'}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
