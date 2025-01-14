@@ -2,7 +2,7 @@ export interface Employee {
   id: string;
   name: string;
   bank: string;
-  status: DemandStatus;
+  status: ContractStatus;
   priority: boolean;
   dailyAnalysis: number;
   settled: boolean;
@@ -24,7 +24,9 @@ export interface Contract {
 export type ContractStatus = 
   | "Analisar"
   | "Pendente"
-  | "Quitado";
+  | "Em Processamento"
+  | "Quitado"
+  | "Cancelado";
 
 export type DemandStatus = 
   | "Resolvido"

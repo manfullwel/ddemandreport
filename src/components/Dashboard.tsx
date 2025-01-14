@@ -5,6 +5,7 @@ import { SheetImport } from './SheetImport';
 import { DocumentViewer } from './DocumentViewer';
 import { AnalyticsDashboard } from './AnalyticsDashboard';
 import { DailyReport } from './DailyReport';
+import { SpreadsheetGenerator } from './SpreadsheetGenerator';
 import {
     Tabs,
     TabsContent,
@@ -90,6 +91,11 @@ export const Dashboard = () => {
                 onDataImported={handleDataImported} 
                 onRawDataImported={handleRawDataImported}
             />
+
+            <div className="mb-8">
+                <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+                <SpreadsheetGenerator />
+            </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList>
