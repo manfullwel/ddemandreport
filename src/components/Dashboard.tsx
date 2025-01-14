@@ -1,136 +1,73 @@
-import { useState } from 'react';
-import { DailyReport as DailyReportType, ReportFilters, INITIAL_FILTERS } from '@/types/report';
-import { DashboardFilters } from './DashboardFilters';
-import { SheetImport } from './SheetImport';
-import { DocumentViewer } from './DocumentViewer';
-import { AnalyticsDashboard } from './AnalyticsDashboard';
-import { DailyReport } from './DailyReport';
+import React, { useState } from 'react';
+import { DailyReport as DailyReportType } from '../types/report';
 import { SpreadsheetGenerator } from './SpreadsheetGenerator';
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs";
-import { FileSpreadsheet, BarChart, CalendarDays } from 'lucide-react';
+import { DashboardFilters } from './DashboardFilters';
+import { ReportFilters, INITIAL_FILTERS } from '../types/report';
+import { DataTable } from './DataTable';
+import { SummaryCards } from './SummaryCards';
+import { Contract, Employee } from '../types/spreadsheet';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { generateSpreadsheetData } from '../utils/mockDataGenerator';
 
 export const Dashboard = () => {
     const [filters, setFilters] = useState<ReportFilters>(INITIAL_FILTERS);
     const [allData, setAllData] = useState<DailyReportType[]>([]);
-    const [rawData, setRawData] = useState<any[][]>([]);
     const [fileName, setFileName] = useState<string>();
     const [uploadDate, setUploadDate] = useState<Date>();
-    const [activeTab, setActiveTab] = useState('daily');
+    const [activeTab, setActiveTab] = useState('summary');
+    
+    // Dados de exemplo para visualização
+    const { contracts, employees } = generateSpreadsheetData();
 
-    const handleDataImported = (importedData: DailyReportType[], name?: string) => {
-        console.log('Dados importados:', importedData);
-        setAllData(importedData);
-        setFileName(name);
-        setUploadDate(new Date());
+    const handleFilterChange = (newFilters: ReportFilters) => {
+        setFilters(newFilters);
     };
-
-    const handleRawDataImported = (data: any[][], name?: string) => {
-        console.log('Dados brutos importados:', data);
-        setRawData(data);
-        setFileName(name);
-        setUploadDate(new Date());
-
-        // Tenta converter para o formato DailyReport
-        try {
-            const headers = data[0].map(h => h.toString().trim());
-            const requiredColumns = [
-                'Nome_Funcionario',
-                'Contratos_Resolvidos',
-                'Pendentes_Receptivo',
-                'Pendentes_Ativo',
-                'Quitados',
-                'Aprovados',
-                'Data_Relatorio'
-            ];
-
-            const hasRequiredColumns = requiredColumns.every(col => 
-                headers.some(h => h.toLowerCase() === col.toLowerCase())
-            );
-
-            if (hasRequiredColumns) {
-                const mappedData = data.slice(1).map(row => {
-                    const report: DailyReportType = {
-                        Nome_Funcionario: row[headers.findIndex(h => h.toLowerCase() === 'nome_funcionario'.toLowerCase())] || '',
-                        Contratos_Resolvidos: parseInt(row[headers.findIndex(h => h.toLowerCase() === 'contratos_resolvidos'.toLowerCase())]) || 0,
-                        Pendentes_Receptivo: parseInt(row[headers.findIndex(h => h.toLowerCase() === 'pendentes_receptivo'.toLowerCase())]) || 0,
-                        Pendentes_Ativo: parseInt(row[headers.findIndex(h => h.toLowerCase() === 'pendentes_ativo'.toLowerCase())]) || 0,
-                        Quitados: parseInt(row[headers.findIndex(h => h.toLowerCase() === 'quitados'.toLowerCase())]) || 0,
-                        Aprovados: parseInt(row[headers.findIndex(h => h.toLowerCase() === 'aprovados'.toLowerCase())]) || 0,
-                        Data_Relatorio: new Date(row[headers.findIndex(h => h.toLowerCase() === 'data_relatorio'.toLowerCase())])
-                    };
-                    return report;
-                });
-
-                setAllData(mappedData);
-            }
-        } catch (error) {
-            console.error('Erro ao converter dados:', error);
-        }
-    };
-
-    const filteredData = allData.filter(report => {
-        const dateMatch = report.Data_Relatorio >= filters.startDate && 
-                        report.Data_Relatorio <= filters.endDate;
-        
-        const nameMatch = !filters.employeeName || 
-                        filters.employeeName === 'all' ||
-                        report.Nome_Funcionario.toLowerCase()
-                            .includes(filters.employeeName.toLowerCase());
-
-        return dateMatch && nameMatch;
-    });
 
     return (
-        <div className="space-y-4">
-            <SheetImport 
-                onDataImported={handleDataImported} 
-                onRawDataImported={handleRawDataImported}
-            />
-
-            <div className="mb-8">
-                <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+        <div className="p-4 space-y-8">
+            <div className="flex justify-between items-center">
+                <h1 className="text-2xl font-bold">Dashboard</h1>
                 <SpreadsheetGenerator />
             </div>
+            
+            <div className="mb-6">
+                <DashboardFilters onFilterChange={handleFilterChange} />
+            </div>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <SummaryCards contracts={contracts} employees={employees} />
+            
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
                 <TabsList>
-                    <TabsTrigger value="daily">
-                        <CalendarDays className="h-4 w-4 mr-2" />
-                        Relatório Diário
-                    </TabsTrigger>
-                    <TabsTrigger value="analytics">
-                        <BarChart className="h-4 w-4 mr-2" />
-                        Dashboard Analítico
-                    </TabsTrigger>
-                    <TabsTrigger value="document">
-                        <FileSpreadsheet className="h-4 w-4 mr-2" />
-                        Dados Brutos
-                    </TabsTrigger>
+                    <TabsTrigger value="summary">Resumo</TabsTrigger>
+                    <TabsTrigger value="contracts">Contratos</TabsTrigger>
+                    <TabsTrigger value="employees">Funcionários</TabsTrigger>
                 </TabsList>
-
-                <TabsContent value="daily">
-                    <DailyReport 
-                        data={allData}
-                        fileName={fileName}
-                    />
+                
+                <TabsContent value="summary" className="mt-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <h3 className="text-lg font-semibold mb-2">Últimos Contratos</h3>
+                            <DataTable 
+                                data={contracts.slice(0, 5)} 
+                                type="contracts" 
+                            />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-2">Funcionários Ativos</h3>
+                            <DataTable 
+                                data={employees.slice(0, 5)} 
+                                type="employees" 
+                            />
+                        </div>
+                    </div>
                 </TabsContent>
-
-                <TabsContent value="analytics" className="space-y-4">
-                    <DashboardFilters onFilterChange={setFilters} />
-                    <AnalyticsDashboard data={filteredData} />
+                
+                <TabsContent value="contracts" className="mt-4">
+                    <DataTable data={contracts} type="contracts" />
                 </TabsContent>
-
-                <TabsContent value="document">
-                    <DocumentViewer 
-                        data={rawData}
-                        fileName={fileName}
-                        uploadDate={uploadDate}
-                    />
+                
+                <TabsContent value="employees" className="mt-4">
+                    <DataTable data={employees} type="employees" />
                 </TabsContent>
             </Tabs>
         </div>
