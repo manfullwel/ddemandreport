@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Logo do Projeto](./public/screenshots/mobile-dashboard.svg)
-
 ### 🚀 Sistema Inteligente de Gestão e Análise de Demandas
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -14,41 +12,36 @@
 
 ## 📱 Demonstração do Sistema
 
-### Relatório Geral
+### Grupos e Equipes
+
 <div align="center">
-  <table>
-    <tr>
-      <td width="50%">
-        <img src="./public/screenshots/grupo_julio.png" alt="Relatório Geral - Grupo Julio" />
-        <p><strong>Grupo Julio</strong>: Visualização completa de demandas resolvidas, pendentes e análises</p>
-      </td>
-      <td width="50%">
-        <img src="./public/screenshots/grupo_leandro.png" alt="Relatório Geral - Grupo Adriano/Leandro" />
-        <p><strong>Grupo Adriano/Leandro</strong>: Métricas detalhadas e status de aprovações</p>
-      </td>
-    </tr>
-  </table>
+
+#### Grupo Julio
+![Grupo Julio](public/screenshots/grupo_julio.png)
+
+#### Grupo Leandro e Adriano
+![Grupo Leandro e Adriano](public/screenshots/grupo_leandro.png)
+
 </div>
 
 ### Versão Mobile
-<div align="center">
-  <table>
-    <tr>
-      <td width="33%">
-        <img src="./public/screenshots/mobile-dashboard.svg" alt="Dashboard Mobile" />
-        <p>Dashboard Otimizado</p>
-      </td>
-      <td width="33%">
-        <img src="./public/screenshots/mobile-notifications.svg" alt="Notificações" />
-        <p>Notificações em Tempo Real</p>
-      </td>
-      <td width="33%">
-        <img src="./public/screenshots/mobile-analysis.svg" alt="Análises" />
-        <p>Análises e Métricas</p>
-      </td>
-    </tr>
-  </table>
-</div>
+
+A versão mobile do sistema oferece:
+
+- **Dashboard Otimizado**
+  - Visualização clara de métricas importantes
+  - Interface adaptada para toque
+  - Carregamento rápido e eficiente
+
+- **Sistema de Notificações**
+  - Alertas em tempo real
+  - Priorização visual de demandas urgentes
+  - Interação rápida com notificações
+
+- **Análises e Relatórios**
+  - Gráficos otimizados para telas menores
+  - Filtros e buscas simplificados
+  - Exportação de dados facilitada
 
 ## 🌟 Por Que Este Sistema é Importante?
 
@@ -93,23 +86,6 @@ npm install
 ```bash
 npm run dev
 ```
-
-## 📱 Recursos da Versão Mobile
-
-### Dashboard Otimizado
-- Visualização clara de métricas importantes
-- Interface adaptada para toque
-- Carregamento rápido e eficiente
-
-### Sistema de Notificações
-- Alertas em tempo real
-- Priorização visual de demandas urgentes
-- Interação rápida com notificações
-
-### Análises e Relatórios
-- Gráficos otimizados para telas menores
-- Filtros e buscas simplificados
-- Exportação de dados facilitada
 
 ## 🔄 Próximas Atualizações
 
