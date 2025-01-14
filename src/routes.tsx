@@ -4,11 +4,17 @@ import { TestPage } from './pages/TestPage';
 import { RelatorioDiario } from './pages/RelatorioDiario';
 import { RelatorioGeral } from './pages/RelatorioGeral';
 import { MobileDemo } from './pages/MobileDemo';
+import { Demo } from './pages/Demo';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 export const router = createBrowserRouter([
   {
     path: '/',
+    element: <Demo />,
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/test',
     element: <TestPage />,
     errorElement: <ErrorBoundary />,
   },

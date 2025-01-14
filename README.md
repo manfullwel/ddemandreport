@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Logo do Projeto](public/screenshots/logo.png)
+![Logo do Projeto](public/screenshots/mobile-dashboard.svg)
 
 ### 🚀 Sistema Inteligente de Gestão e Análise de Demandas
 
@@ -19,11 +19,11 @@
   <table>
     <tr>
       <td width="50%">
-        <img src="public/screenshots/relatorio-geral-1.png" alt="Relatório Geral - Grupo Julio" />
+        <img src="public/screenshots/grupo_julio.png" alt="Relatório Geral - Grupo Julio" />
         <p><strong>Grupo Julio</strong>: Visualização completa de demandas resolvidas, pendentes e análises</p>
       </td>
       <td width="50%">
-        <img src="public/screenshots/relatorio-geral-2.png" alt="Relatório Geral - Grupo Adriano/Leandro" />
+        <img src="public/screenshots/grupo_leandro.png" alt="Relatório Geral - Grupo Adriano/Leandro" />
         <p><strong>Grupo Adriano/Leandro</strong>: Métricas detalhadas e status de aprovações</p>
       </td>
     </tr>
@@ -35,15 +35,15 @@
   <table>
     <tr>
       <td width="33%">
-        <img src="public/screenshots/mobile-dashboard.png" alt="Dashboard Mobile" />
+        <img src="public/screenshots/mobile-dashboard.svg" alt="Dashboard Mobile" />
         <p>Dashboard Otimizado</p>
       </td>
       <td width="33%">
-        <img src="public/screenshots/mobile-notifications.png" alt="Notificações" />
+        <img src="public/screenshots/mobile-notifications.svg" alt="Notificações" />
         <p>Notificações em Tempo Real</p>
       </td>
       <td width="33%">
-        <img src="public/screenshots/mobile-analysis.png" alt="Análises" />
+        <img src="public/screenshots/mobile-analysis.svg" alt="Análises" />
         <p>Análises e Métricas</p>
       </td>
     </tr>
