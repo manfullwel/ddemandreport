@@ -1,89 +1,82 @@
 # Demand Report - Sistema de Gestão de Demandas em Tempo Real
 
-## 🚀 Sobre o Projeto
+<div align="center">
 
-O Demand Report é uma ferramenta poderosa de gestão e análise de demandas em tempo real, desenvolvida para otimizar o fluxo de trabalho e proporcionar insights valiosos sobre o desempenho da equipe. Inspirada nas necessidades reais do ambiente corporativo e com contribuições valiosas da Ediane Feitoza., que compartilhou sua experiência e visão para tornar esta ferramenta ainda mais eficiente.
+![Logo do Projeto](public/screenshots/logo.png)
 
-### 💡 Inspiração e Agradecimentos
+### 🚀 Sistema Inteligente de Gestão e Análise de Demandas
 
-Um agradecimento especial à Ediane F., cuja experiência e sugestões foram fundamentais para o desenvolvimento desta ferramenta. Suas dicas e insights sobre o fluxo de trabalho diário contribuíram significativamente para a criação de uma solução que realmente atende às necessidades da equipe.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-## 🌟 Funcionalidades Principais
+</div>
 
-### 1. Dashboard em Tempo Real
-- Visualização instantânea de demandas pendentes e resolvidas
-- Acompanhamento de prioridades
-- Métricas de desempenho atualizadas em tempo real
+## 📱 Demonstração do Sistema
 
-### 2. Relatório Diário
-- Análise detalhada das atividades do dia
-- Métricas de produtividade individual
-- Status de demandas críticas
+### Relatório Geral
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%">
+        <img src="public/screenshots/relatorio-geral-1.png" alt="Relatório Geral - Grupo Julio" />
+        <p><strong>Grupo Julio</strong>: Visualização completa de demandas resolvidas, pendentes e análises</p>
+      </td>
+      <td width="50%">
+        <img src="public/screenshots/relatorio-geral-2.png" alt="Relatório Geral - Grupo Adriano/Leandro" />
+        <p><strong>Grupo Adriano/Leandro</strong>: Métricas detalhadas e status de aprovações</p>
+      </td>
+    </tr>
+  </table>
+</div>
 
-### 3. Relatório Geral
-- Visão consolidada do desempenho da equipe
-- Comparativo entre diferentes períodos
-- Análise de tendências e gargalos
+### Versão Mobile
+<div align="center">
+  <table>
+    <tr>
+      <td width="33%">
+        <img src="public/screenshots/mobile-dashboard.png" alt="Dashboard Mobile" />
+        <p>Dashboard Otimizado</p>
+      </td>
+      <td width="33%">
+        <img src="public/screenshots/mobile-notifications.png" alt="Notificações" />
+        <p>Notificações em Tempo Real</p>
+      </td>
+      <td width="33%">
+        <img src="public/screenshots/mobile-analysis.png" alt="Análises" />
+        <p>Análises e Métricas</p>
+      </td>
+    </tr>
+  </table>
+</div>
 
-### 4. Versão Mobile
-- Acesso completo via dispositivos móveis
-- Notificações em tempo real
-- Interface adaptativa para melhor experiência em smartphones
+## 🌟 Por Que Este Sistema é Importante?
 
-## 🔥 Diferenciais
+### Produtividade e Eficiência
+- **Monitoramento em Tempo Real**: Acompanhamento instantâneo de todas as demandas
+- **Redução de Tempo**: Diminuição significativa no tempo de resposta a demandas urgentes
+- **Organização Inteligente**: Priorização automática baseada em critérios importantes
 
-1. **Monitoramento em Tempo Real**
-   - Acompanhamento instantâneo de métricas
-   - Alertas de prioridades
-   - Dashboard atualizado automaticamente
+### Mobilidade e Acessibilidade
+- **Acesso Universal**: Disponível em qualquer dispositivo, a qualquer momento
+- **Notificações Instantâneas**: Alertas imediatos para demandas prioritárias
+- **Interface Adaptativa**: Experiência otimizada tanto em desktop quanto em mobile
 
-2. **Análise Inteligente**
-   - Identificação de padrões
-   - Previsão de gargalos
-   - Sugestões de otimização
+### Tomada de Decisão
+- **Análise de Dados**: Métricas claras e objetivas para decisões estratégicas
+- **Relatórios Detalhados**: Visão completa do desempenho individual e em equipe
+- **Identificação de Padrões**: Análise de tendências para melhorias contínuas
 
-3. **Gestão Eficiente**
-   - Distribuição inteligente de demandas
-   - Priorização automática
-   - Histórico completo de atividades
+## 💡 Inspiração e Agradecimentos
 
-## 📱 Versão Mobile
+Este projeto foi inspirado nas necessidades reais do ambiente corporativo e contou com contribuições valiosas, especialmente de **Ediane F.**, que compartilhou insights fundamentais:
 
-A versão mobile do Demand Report foi desenvolvida pensando na mobilidade e praticidade. Principais características:
+- Compreensão profunda do fluxo de trabalho diário
+- Identificação de pontos críticos para otimização
+- Sugestões práticas para melhorar a experiência do usuário
+- Feedback sobre funcionalidades essenciais
 
-- Interface intuitiva e responsiva
-- Acesso rápido às métricas principais
-- Notificações push para demandas urgentes
-- Visualização otimizada de gráficos e relatórios
-- Atualização em tempo real durante o expediente
-
-## 💼 Importância para o Ambiente Corporativo
-
-1. **Produtividade**
-   - Redução do tempo de resposta
-   - Melhor distribuição de tarefas
-   - Identificação de pontos de melhoria
-
-2. **Tomada de Decisão**
-   - Dados precisos em tempo real
-   - Histórico detalhado de atividades
-   - Métricas claras de desempenho
-
-3. **Gestão de Equipe**
-   - Acompanhamento individual e coletivo
-   - Identificação de necessidades de treinamento
-   - Reconhecimento de alto desempenho
-
-## 🛠️ Tecnologias Utilizadas
-
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- Shadcn/ui
-- Node.js
-- Git
-
-## 📦 Instalação e Uso
+## 🚀 Como Usar
 
 1. Clone o repositório:
 ```bash
@@ -101,19 +94,36 @@ npm install
 npm run dev
 ```
 
+## 📱 Recursos da Versão Mobile
+
+### Dashboard Otimizado
+- Visualização clara de métricas importantes
+- Interface adaptada para toque
+- Carregamento rápido e eficiente
+
+### Sistema de Notificações
+- Alertas em tempo real
+- Priorização visual de demandas urgentes
+- Interação rápida com notificações
+
+### Análises e Relatórios
+- Gráficos otimizados para telas menores
+- Filtros e buscas simplificados
+- Exportação de dados facilitada
+
 ## 🔄 Próximas Atualizações
 
-- [ ] Integração com APIs externas
-- [ ] Sistema de notificações avançado
-- [ ] Módulo de relatórios personalizados
+- [ ] Integração com sistemas externos
 - [ ] Análise preditiva de demandas
-- [ ] Expansão da versão mobile
+- [ ] Chatbot para suporte rápido
+- [ ] Dashboards personalizáveis
+- [ ] Módulo de relatórios avançados
 
 ## 👥 Contribuições
 
-Este projeto foi enriquecido com as valiosas contribuições de profissionais da área, em especial:
+Este projeto é resultado de um esforço colaborativo, com destaque especial para:
 
-- **Ediane F.** - Contribuiu com insights fundamentais sobre o fluxo de trabalho e necessidades reais do ambiente corporativo, ajudando a moldar uma ferramenta verdadeiramente útil e eficiente.
+- **Ediane F.** - Contribuições valiosas na definição do fluxo de trabalho e requisitos do sistema
 
 ## 📄 Licença
 
@@ -121,4 +131,11 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-Desenvolvido com 💙 para otimizar o gerenciamento de demandas e impulsionar a produtividade das equipes.
+<div align="center">
+  <p>Desenvolvido com 💙 para otimizar o gerenciamento de demandas e impulsionar a produtividade das equipes.</p>
+  <p>
+    <a href="https://github.com/manfullwel/ddemandreport/issues">Reportar Bug</a>
+    ·
+    <a href="https://github.com/manfullwel/ddemandreport/issues">Sugerir Feature</a>
+  </p>
+</div>
