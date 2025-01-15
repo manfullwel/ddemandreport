@@ -51,7 +51,7 @@ O sistema inclui um analisador de relatórios que permite:
    - Detalhamento por membro
    - Histórico de atualizações
 
-[Experimente o Analisador](/analisador)
+> Para acessar o analisador, execute o projeto localmente e acesse `http://localhost:5173/analisador`
 
 ### Versão Mobile
 
