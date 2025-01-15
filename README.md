@@ -24,6 +24,35 @@
 
 </div>
 
+### 📊 Analisador de Relatórios
+
+O sistema inclui um analisador de relatórios que permite:
+
+1. **Upload de Arquivos CSV**
+   - Suporte para arquivos do Relatório Diário
+   - Análise automática dos dados
+   - Visualização em tempo real do progresso
+
+2. **Formato do Arquivo CSV**
+   ```csv
+   data,grupo,responsavel,contrato,status,ultima_atualizacao
+   2025-01-14,Grupo Julio,Maria Silva,123456,Quitado,2025-01-14 14:30
+   ```
+
+3. **Métricas Geradas**
+   - Total de demandas por grupo
+   - Distribuição por status (Resolvidos, Pendentes, Quitados, Aprovados)
+   - Desempenho individual dos membros
+   - Última atualização de cada membro
+
+4. **Visualização**
+   - Gráficos interativos
+   - Agrupamento por equipe
+   - Detalhamento por membro
+   - Histórico de atualizações
+
+[Experimente o Analisador](/analisador)
+
 ### Versão Mobile
 
 A versão mobile do sistema oferece:

@@ -5,6 +5,7 @@ import { RelatorioDiario } from './pages/RelatorioDiario';
 import { RelatorioGeral } from './pages/RelatorioGeral';
 import { MobileDemo } from './pages/MobileDemo';
 import { Demo } from './pages/Demo';
+import { AnalisadorArquivos } from './pages/AnalisadorArquivos';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 export const router = createBrowserRouter([
@@ -36,6 +37,11 @@ export const router = createBrowserRouter([
   {
     path: '/mobile',
     element: <MobileDemo />,
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/analisador',
+    element: <AnalisadorArquivos />,
     errorElement: <ErrorBoundary />,
   },
 ]);
