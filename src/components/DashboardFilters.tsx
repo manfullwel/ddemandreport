@@ -107,7 +107,7 @@ export const DashboardFilters: React.FC<DashboardFiltersProps> = ({ filters, onF
           <Label htmlFor="status" className="sr-only">
             Status
           </Label>
-          <Select value={filters.status} onValueChange={handleStatusSelect}>
+          <Select value={filters.status || "all"} onValueChange={handleStatusSelect}>
             <SelectTrigger
               id="status"
               className={cn('w-full sm:w-[180px]', !filters.status && 'text-muted-foreground')}
@@ -116,7 +116,7 @@ export const DashboardFilters: React.FC<DashboardFiltersProps> = ({ filters, onF
               <SelectValue placeholder="Filtrar por status" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos</SelectItem>
+              <SelectItem value="all">Todos</SelectItem>
               <SelectItem value="pending">Pendente</SelectItem>
               <SelectItem value="in_progress">Em Andamento</SelectItem>
               <SelectItem value="completed">Concluído</SelectItem>

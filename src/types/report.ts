@@ -33,12 +33,12 @@ export interface Demand {
 
 export interface ReportFilters {
   date: Date | null;
-  status: string;
+  status: 'all' | 'pending' | 'in_progress' | 'completed' | 'cancelled';
 }
 
 export const INITIAL_FILTERS: ReportFilters = {
   date: null,
-  status: '',
+  status: 'all',
 };
 
 export type DemandStatus = 'pending' | 'in_progress' | 'completed' | 'cancelled';

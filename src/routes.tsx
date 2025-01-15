@@ -7,17 +7,18 @@ import { MobileDemo } from './pages/MobileDemo';
 import { Demo } from './pages/Demo';
 import { AnalisadorArquivos } from './pages/AnalisadorArquivos';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { DiagnosticPanel } from '@/components/DiagnosticPanel';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Demo />,
-    errorElement: <ErrorBoundary />,
+    errorElement: <ErrorBoundary><DiagnosticPanel /></ErrorBoundary>,
   },
   {
     path: '/test',
     element: <TestPage />,
-    errorElement: <ErrorBoundary />,
+    errorElement: <ErrorBoundary><DiagnosticPanel /></ErrorBoundary>,
   },
   {
     path: '/dashboard',
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
   {
     path: '/analisador',
     element: <AnalisadorArquivos />,
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/diagnostico',
+    element: <DiagnosticPanel />,
     errorElement: <ErrorBoundary />,
   },
 ]);

@@ -1,235 +1,227 @@
-# Demand Report - Sistema de Gestão de Demandas em Tempo Real
+# Demand Count Sentinel 
 
-<div align="center">
+Sistema de monitoramento de performance com interface CLI interativa.
 
-### 🚀 Sistema Inteligente de Gestão e Análise de Demandas
+## Requisitos
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+- Node.js v18 ou superior
+- npm v8 ou superior
+
+## Instalação
+
+1. Limpe a instalação existente e instale as dependências:
+```bash
+clean-install.bat
+```
+
+## Desenvolvimento
+
+Para iniciar o ambiente de desenvolvimento:
+```bash
+start-dev.bat
+```
+
+Isso irá iniciar:
+- Servidor de desenvolvimento (Vite) na porta 5173
+- Servidor de monitoramento na porta 5175
+- Cliente CLI de monitoramento
+
+## Produção
+
+1. Gere o build de produção:
+```bash
+build-prod.bat
+```
+
+2. Inicie o ambiente de produção:
+```bash
+start-prod.bat
+```
+
+Isso irá iniciar:
+- Servidor de produção na porta 4173
+- Servidor de monitoramento na porta 5175
+- Cliente CLI de monitoramento
+
+## Monitoramento
+
+O sistema de monitoramento inclui:
+
+### Servidor de Monitoramento
+- Coleta métricas de performance em tempo real
+- Armazena logs de erro
+- Fornece API REST para acesso aos dados
+- Endpoints:
+  - GET /metrics - Retorna todas as métricas e erros
+  - POST /metrics - Registra nova métrica ou erro
+
+### Cliente CLI
+- Interface interativa para visualização de métricas
+- Atualização automática a cada 5 segundos
+- Comandos disponíveis:
+  1. Mostrar métricas de performance
+  2. Mostrar logs de erro
+  3. Limpar tela
+  4. Mostrar análise de performance
+  5. Atualizar dados manualmente
+
+### Análise de Performance
+- Tempo médio de operação
+- Detecção de operações lentas (>1000ms)
+- Taxa de erros
+- Recomendações automáticas de otimização
+
+## Scripts
+
+- `clean-install.bat` - Limpa a instalação e reinstala dependências
+- `start-dev.bat` - Inicia ambiente de desenvolvimento
+- `build-prod.bat` - Gera build de produção
+- `start-prod.bat` - Inicia ambiente de produção
+
+## Estrutura do Projeto
+
+```
+/
+├── src/                    # Código fonte da aplicação
+├── monitor/               # Sistema de monitoramento
+│   ├── server.js         # Servidor de monitoramento
+│   ├── cli.js           # Cliente CLI
+│   └── package.json     # Dependências do monitor
+├── dist/                 # Build de produção
+└── scripts/             # Scripts utilitários
+```
+
+## Resolução de Problemas
+
+Se encontrar problemas durante a instalação:
+
+1. Feche todos os terminais e o VS Code
+2. Execute `clean-install.bat` como administrador
+3. Aguarde a conclusão da instalação
+4. Inicie o ambiente desejado com `start-dev.bat` ou `start-prod.bat`
+
+Se o problema persistir:
+1. Delete manualmente as pastas:
+   - node_modules
+   - monitor/node_modules
+2. Delete os arquivos:
+   - package-lock.json
+   - monitor/package-lock.json
+3. Execute `clean-install.bat` novamente
+
+# Demand Count Sentinel 
+
+> Um dashboard moderno para monitoramento e análise de demandas em tempo real.
+
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-</div>
+## Funcionalidades
 
-## 📱 Demonstração do Sistema
+- **Dashboard Interativo**: Visualização em tempo real de métricas e KPIs
+- **Análise Detalhada**: Filtros avançados e análise granular de dados
+- **Design Responsivo**: Interface adaptável para desktop e dispositivos móveis
+- **Gráficos Dinâmicos**: Visualização de dados com Recharts
+- **UI/UX Moderna**: Interface elegante usando Tailwind CSS e Radix UI
 
-### Grupos e Equipes
+## Demo
 
-<div align="center">
+![Demo Screenshot](./screenshots/demo.png)
 
-#### Grupo Julio
-![Grupo Julio](public/screenshots/grupo_julio.png)
+Acesse nossa [Demo Online](https://manfullwel.github.io/ddemandreport/) para ver o projeto em ação.
 
-#### Grupo Leandro e Adriano
-![Grupo Leandro e Adriano](public/screenshots/grupo_leandro.png)
+## Tecnologias
 
-</div>
-
-### 📊 Analisador de Relatórios
-
-O sistema inclui um analisador de relatórios que permite:
-
-1. **Upload de Arquivos CSV**
-   - Suporte para arquivos do Relatório Diário
-   - Análise automática dos dados
-   - Visualização em tempo real do progresso
-
-2. **Formato do Arquivo CSV**
-   ```csv
-   data,grupo,responsavel,contrato,status,ultima_atualizacao
-   2025-01-14,Grupo Julio,Maria Silva,123456,Quitado,2025-01-14 14:30
-   ```
-
-3. **Métricas Geradas**
-   - Total de demandas por grupo
-   - Distribuição por status (Resolvidos, Pendentes, Quitados, Aprovados)
-   - Desempenho individual dos membros
-   - Última atualização de cada membro
-
-4. **Visualização**
-   - Gráficos interativos
-   - Agrupamento por equipe
-   - Detalhamento por membro
-   - Histórico de atualizações
-
-> Para acessar o analisador, execute o projeto localmente e acesse `http://localhost:5173/analisador`
-
-### Versão Mobile
-
-A versão mobile do sistema oferece:
-
-- **Dashboard Otimizado**
-  - Visualização clara de métricas importantes
-  - Interface adaptada para toque
-  - Carregamento rápido e eficiente
-
-- **Sistema de Notificações**
-  - Alertas em tempo real
-  - Priorização visual de demandas urgentes
-  - Interação rápida com notificações
-
-- **Análises e Relatórios**
-  - Gráficos otimizados para telas menores
-  - Filtros e buscas simplificados
-  - Exportação de dados facilitada
-
-## 🌟 Por Que Este Sistema é Importante?
-
-### Produtividade e Eficiência
-- **Monitoramento em Tempo Real**: Acompanhamento instantâneo de todas as demandas
-- **Redução de Tempo**: Diminuição significativa no tempo de resposta a demandas urgentes
-- **Organização Inteligente**: Priorização automática baseada em critérios importantes
-
-### Mobilidade e Acessibilidade
-- **Acesso Universal**: Disponível em qualquer dispositivo, a qualquer momento
-- **Notificações Instantâneas**: Alertas imediatos para demandas prioritárias
-- **Interface Adaptativa**: Experiência otimizada tanto em desktop quanto em mobile
-
-### Tomada de Decisão
-- **Análise de Dados**: Métricas claras e objetivas para decisões estratégicas
-- **Relatórios Detalhados**: Visão completa do desempenho individual e em equipe
-- **Identificação de Padrões**: Análise de tendências para melhorias contínuas
-
-## 🔄 Organograma do Projeto
-
-<div align="center">
-
-![Organograma do Projeto](screenshots/organograma.svg)
-
-</div>
-
-### Estrutura Atual
-
-#### 1. Frontend (React + TypeScript)
-- **Páginas**
-  - `Demo`: Página inicial com demonstração do sistema
-  - `RelatorioDiario`: Análise diária de demandas
-  - `RelatorioGeral`: Visão geral das equipes
-  - `MobileDemo`: Interface otimizada para mobile
-  - `AnalisadorArquivos`: Upload e análise de relatórios
-  - `Dashboard`: Painel principal do sistema
-
-- **Componentes**
-  - `FileUploadAnalyzer`: Processamento de arquivos CSV
-  - `ErrorBoundary`: Tratamento de erros
-  - `Dashboard`: Componentes do painel principal
-  - `UI Components`: Biblioteca de componentes reutilizáveis
-
-### Expansões Futuras
-
-#### 1. Backend (Node.js + Express)
-- API RESTful para gerenciamento de dados
-- Autenticação e autorização
-- Cache e otimização de performance
-- Integração com serviços externos
-
-#### 2. Database (PostgreSQL)
-- Armazenamento estruturado de dados
-- Histórico completo de demandas
-- Backup e recuperação
-- Queries otimizadas
-
-#### 3. Recursos Avançados
-- **Análise Preditiva**
-  - Previsão de demandas
-  - Identificação de padrões
-  - Sugestões automáticas
-
-- **Chatbot de Suporte**
-  - Atendimento automatizado
-  - FAQ inteligente
-  - Direcionamento de demandas
-
-- **Dashboards Personalizáveis**
-  - Widgets configuráveis
-  - Métricas personalizadas
-  - Temas e layouts flexíveis
-
-#### 4. Mobile Features
-- **Push Notifications**
-  - Alertas em tempo real
-  - Priorização de mensagens
-  - Configurações personalizadas
-
-- **Offline Mode**
-  - Sincronização automática
-  - Cache local
-  - Operações offline
-
-- **Gestures & UX**
-  - Interações touch otimizadas
-  - Navegação intuitiva
-  - Atualizações em tempo real
-
-### Tecnologias Utilizadas
-
-- **Frontend**
+- **Frontend:**
   - React 18
-  - TypeScript 5
-  - Tailwind CSS
-  - Shadcn/ui
+  - TypeScript
   - Vite
+  - TailwindCSS
+  - Radix UI
+  - Recharts
+  - React Router DOM
+  - Lucide React (ícones)
 
-- **Futuras Implementações**
-  - Node.js
-  - Express
-  - PostgreSQL
-  - Redis (cache)
-  - WebSocket
-  - Machine Learning
-  - PWA
+- **Desenvolvimento:**
+  - ESLint
+  - Prettier
+  - Husky
+  - TypeScript ESLint
 
-## 💡 Inspiração e Agradecimentos
-
-Este projeto foi inspirado nas necessidades reais do ambiente corporativo e contou com contribuições valiosas, especialmente de **Ediane F.**, que compartilhou insights fundamentais:
-
-- Compreensão profunda do fluxo de trabalho diário
-- Identificação de pontos críticos para otimização
-- Sugestões práticas para melhorar a experiência do usuário
-- Feedback sobre funcionalidades essenciais
-
-## 🚀 Como Usar
+## Instalação
 
 1. Clone o repositório:
 ```bash
 git clone https://github.com/manfullwel/ddemandreport.git
+cd ddemandreport
 ```
 
 2. Instale as dependências:
 ```bash
-cd ddemandreport
 npm install
 ```
 
-3. Execute o projeto:
+3. Inicie o servidor de desenvolvimento:
 ```bash
 npm run dev
 ```
 
-## 🔄 Próximas Atualizações
+## Scripts Disponíveis
 
-- [ ] Integração com sistemas externos
-- [ ] Análise preditiva de demandas
-- [ ] Chatbot para suporte rápido
-- [ ] Dashboards personalizáveis
-- [ ] Módulo de relatórios avançados
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Gera a build de produção
+- `npm run lint`: Executa a verificação de linting
+- `npm run format`: Formata o código usando Prettier
+- `npm run type-check`: Verifica os tipos TypeScript
+- `npm run validate`: Executa todas as verificações (type-check, lint, format)
 
-## 👥 Contribuições
+## Estrutura do Projeto
 
-Este projeto é resultado de um esforço colaborativo, com destaque especial para:
+```
+demand-count-sentinel/
+├── src/
+│   ├── components/     # Componentes React reutilizáveis
+│   ├── pages/         # Páginas da aplicação
+│   ├── types/         # Definições de tipos TypeScript
+│   ├── utils/         # Utilitários e helpers
+│   ├── lib/           # Bibliotecas e configurações
+│   └── main.tsx       # Ponto de entrada da aplicação
+├── public/            # Arquivos estáticos
+└── ...                # Arquivos de configuração
+```
 
-- **Ediane F.** - Contribuições valiosas na definição do fluxo de trabalho e requisitos do sistema
+## Roadmap
 
-## 📄 Licença
+- [ ] Implementação de autenticação
+- [ ] Integração com backend
+- [ ] Exportação de relatórios em PDF
+- [ ] Modo dark/light
+- [ ] Mais opções de visualização de dados
+- [ ] Notificações em tempo real
+
+## Contribuindo
+
+1. Fork o projeto
+2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a Branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
----
+## Autores
 
-<div align="center">
-  <p>Desenvolvido com 💙 para otimizar o gerenciamento de demandas e impulsionar a produtividade das equipes.</p>
-  <p>
-    <a href="https://github.com/manfullwel/ddemandreport/issues">Reportar Bug</a>
-    ·
-    <a href="https://github.com/manfullwel/ddemandreport/issues">Sugerir Feature</a>
-  </p>
-</div>
+- **Manfullwel** - *Desenvolvedor Principal* - [@manfullwel](https://github.com/manfullwel)
+
+## Agradecimentos
+
+- Equipe de design pela inspiração
+- Contribuidores e testadores
+- Comunidade open source
+
+---
+Desenvolvido com por [Manfullwel](https://github.com/manfullwel)

@@ -6,9 +6,48 @@ import { SummaryCards } from './SummaryCards';
 import { ReportFilters, INITIAL_FILTERS } from '@/types/report';
 import { ErrorBoundary } from './ErrorBoundary';
 import { errorHandler } from '@/utils/errorHandler';
+import { Contract, Employee } from '@/types/spreadsheet';
 
 export const Dashboard: React.FC = () => {
   const [filters, setFilters] = useState<ReportFilters>(INITIAL_FILTERS);
+
+  // Mock data for initial render
+  const mockChartData = [
+    { name: 'Segunda', resolved: 10, pending: 5 },
+    { name: 'Terça', resolved: 15, pending: 8 },
+    { name: 'Quarta', resolved: 12, pending: 6 },
+    { name: 'Quinta', resolved: 18, pending: 4 },
+    { name: 'Sexta', resolved: 14, pending: 7 },
+  ];
+
+  const mockContracts: Contract[] = [
+    {
+      id: '1',
+      contractNumber: 'CONT-001',
+      clientName: 'Cliente A',
+      receivingBank: 'Banco X',
+      responsibleEmployee: 'João',
+      status: 'Pendente',
+      lastUpdate: new Date().toISOString(),
+    },
+  ];
+
+  const mockEmployees: Employee[] = [
+    {
+      id: '1',
+      name: 'João Silva',
+      group: 'JULIO',
+      approved: true,
+      pendingTasks: 5,
+    },
+    {
+      id: '2',
+      name: 'Maria Santos',
+      group: 'ADRIANO/LEANDRO',
+      approved: false,
+      pendingTasks: 3,
+    },
+  ];
 
   const handleFilterChange = useCallback((newFilters: ReportFilters) => {
     try {
@@ -27,11 +66,20 @@ export const Dashboard: React.FC = () => {
     [filters, handleFilterChange]
   );
 
-  const memoizedChart = useMemo(() => <DailyChart filters={filters} />, [filters]);
+  const memoizedChart = useMemo(
+    () => <DailyChart data={mockChartData} />,
+    [mockChartData]
+  );
 
-  const memoizedTable = useMemo(() => <DataTable filters={filters} />, [filters]);
+  const memoizedTable = useMemo(
+    () => <DataTable data={mockContracts} type="contracts" />,
+    [mockContracts]
+  );
 
-  const memoizedSummary = useMemo(() => <SummaryCards filters={filters} />, [filters]);
+  const memoizedSummary = useMemo(
+    () => <SummaryCards contracts={mockContracts} employees={mockEmployees} />,
+    [mockContracts, mockEmployees]
+  );
 
   return (
     <ErrorBoundary>
@@ -51,7 +99,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-xl font-semibold mb-4">Demandas</h2>
+          <h2 className="text-xl font-semibold mb-4">Contratos</h2>
           {memoizedTable}
         </div>
       </div>
