@@ -1,14 +1,11 @@
 [build]
-  functions = "netlify/functions"
   publish = "docs"
-
-[[redirects]]
-  from = "/api/demo/*"
-  to = "/.netlify/functions/proxy-demo"
-  status = 200
 
 [[headers]]
   for = "/*"
-    [headers.values]
+  [headers.values]
     X-Frame-Options = "SAMEORIGIN"
-    Content-Security-Policy = "frame-ancestors 'self'"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; frame-ancestors 'self'"
