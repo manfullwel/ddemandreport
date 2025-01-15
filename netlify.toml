@@ -1,0 +1,14 @@
+[build]
+  functions = "netlify/functions"
+  publish = "docs"
+
+[[redirects]]
+  from = "/api/demo/*"
+  to = "/.netlify/functions/proxy-demo"
+  status = 200
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    Content-Security-Policy = "frame-ancestors 'self'"

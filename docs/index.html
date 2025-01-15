@@ -31,14 +31,17 @@
                     Demand Count Sentinel
                 </h1>
                 <p class="text-xl md:text-2xl text-center mb-8 max-w-2xl">
-                    Dashboard moderno para monitoramento e análise de demandas em tempo real
+                    Transformando dados complexos em insights acionáveis
+                </p>
+                <p class="text-lg text-center mb-8 max-w-3xl text-blue-100">
+                    Inspirado pelos princípios de Edward Tufte e metodologias ágeis modernas
                 </p>
                 <div class="flex gap-4">
                     <a href="https://github.com/manfullwel/ddemandreport" 
                        class="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                         GitHub
                     </a>
-                    <a href="#demo" 
+                    <a href="demo-secure.html" 
                        class="bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition-colors">
                         Ver Demo
                     </a>
@@ -47,10 +50,23 @@
         </div>
     </header>
 
+    <!-- Quote Section -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <blockquote class="text-2xl md:text-3xl italic text-center mb-8">
+                "A simplicidade é o último grau de sofisticação"
+            </blockquote>
+            <p class="text-center text-gray-400">- Leonardo da Vinci</p>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16">Funcionalidades Principais</h2>
+            <h2 class="text-3xl font-bold text-center mb-8">Visualização Inteligente de Dados</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto">
+                Transforme seus relatórios diários em insights poderosos com nossa solução inspirada nas melhores práticas de design de informação.
+            </p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
                 <div class="feature-card bg-white p-6 rounded-xl shadow-lg">
@@ -91,16 +107,54 @@
     <!-- Demo Section -->
     <section id="demo" class="py-20 bg-gray-100">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16">Demo</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
-                    <img src="./screenshots/demo.png" alt="Demo do Dashboard" class="w-full">
+            <h2 class="text-3xl font-bold text-center mb-8">Demo Interativa</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto">
+                Experimente nossa solução em tempo real
+            </p>
+            <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+                <div class="relative" style="padding-top: 75%">
+                    <iframe 
+                        id="demoFrame"
+                        src="demo-frame.html"
+                        class="absolute top-0 left-0 w-full h-full border-0"
+                        allow="fullscreen"
+                    ></iframe>
                 </div>
-                <div class="text-center mt-8">
-                    <a href="https://github.com/manfullwel/ddemandreport" 
-                       class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                        Ver no GitHub
-                    </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-20 bg-blue-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">Nossa Filosofia de Design</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Simplicidade</h3>
+                    <p class="text-gray-600">"Menos, porém melhor" - Dieter Rams</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Clareza</h3>
+                    <p class="text-gray-600">"A excelência gráfica é a apresentação bem pensada de dados" - Edward Tufte</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Eficiência</h3>
+                    <p class="text-gray-600">"A melhor interface é aquela que nem percebemos" - Jakob Nielsen</p>
                 </div>
             </div>
         </div>
