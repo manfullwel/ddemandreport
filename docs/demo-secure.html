@@ -94,6 +94,19 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -109,52 +122,30 @@
     </div>
 
     <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <h2>Carregando Demo...</h2>
+        <div class="loading-spinner"></div>
+        <span>Carregando demonstração...</span>
     </div>
 
     <div class="demo-container">
-        <iframe id="demoContent" 
-                sandbox="allow-same-origin allow-scripts allow-forms"
-                loading="lazy"></iframe>
+        <div id="content"></div>
     </div>
 
     <script>
-        const iframe = document.getElementById('demoContent');
-        const loading = document.getElementById('loading');
-        
         async function loadDemo() {
             try {
-                const response = await fetch('https://preview--demand-count-sentinel.lovable.app/');
+                const response = await fetch('/.netlify/functions/proxy-demo');
+                if (!response.ok) throw new Error('Falha ao carregar demonstração');
+                
                 const html = await response.text();
-                
-                // Limpa o HTML de elementos indesejados
-                const cleanHtml = html
-                    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-                    .replace(/<link[^>]*lovable[^>]*>/gi, '')
-                    .replace(/<a[^>]*lovable[^>]*>.*?<\/a>/gi, '')
-                    .replace(/https:\/\/preview--demand-count-sentinel\.lovable\.app/g, '')
-                    .replace(/lovable\.dev/g, '');
-
-                const blob = new Blob([cleanHtml], { type: 'text/html' });
-                iframe.src = URL.createObjectURL(blob);
-                
-                iframe.onload = () => {
-                    setTimeout(() => {
-                        loading.classList.add('hidden');
-                    }, 500);
-                };
+                document.getElementById('content').innerHTML = html;
+                document.getElementById('loading').style.display = 'none';
             } catch (error) {
-                console.error('Erro ao carregar demo:', error);
-                loading.innerHTML = `
-                    <div class="spinner"></div>
-                    <h2>Erro ao carregar</h2>
-                    <p>Por favor, tente novamente mais tarde</p>
-                `;
+                console.error('Erro:', error);
+                document.getElementById('loading').innerHTML = 'Erro ao carregar demonstração. Por favor, tente novamente.';
             }
         }
 
-        window.addEventListener('load', loadDemo);
+        document.addEventListener('DOMContentLoaded', loadDemo);
     </script>
 </body>
 </html>

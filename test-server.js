@@ -1,45 +1,68 @@
 import express from 'express';
-import fetch from 'node-fetch';
+import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 const app = express();
+const port = 3000;
 
-// Servir arquivos estáticos da pasta docs
-app.use(express.static('docs'));
-
-// Rota para proxy da demo
-app.get('/api/demo', async (req, res) => {
+// Função para registrar logs
+async function logToFile(message) {
+    const timestamp = new Date().toISOString();
+    const logMessage = `[${timestamp}] ${message}\n`;
+    const logPath = path.join(__dirname, 'security.log');
+    
     try {
-        const response = await fetch('https://preview--demand-count-sentinel.lovable.app/');
-        let text = await response.text();
-        
-        // Remove o badge do Lovable e outros elementos indesejados
-        text = text
-            .replace(/<a id="lovable-badge"[\s\S]*?<\/a>/g, '') // Remove o badge completo
-            .replace(/<button id="lovable-badge-close"[\s\S]*?<\/button>/g, '') // Remove o botão de fechar
-            .replace(/https:\/\/preview--demand-count-sentinel\.lovable\.app/g, '') // Remove URLs
-            .replace(/lovable\.dev/g, '') // Remove referências ao Lovable
-            .replace(/<meta[^>]*>/g, '') // Remove meta tags
-            .replace(/<link[^>]*lovable[^>]*>/g, '') // Remove links relacionados ao Lovable
-            .replace(/<!-- Lovable[\s\S]*?-->/g, ''); // Remove comentários do Lovable
-        
-        res.setHeader('Content-Type', 'text/html');
-        res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-        res.setHeader('Content-Security-Policy', "frame-ancestors 'self'");
-        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
-        res.send(text);
+        await fs.appendFile(logPath, logMessage);
     } catch (error) {
-        console.error('Erro:', error);
-        res.status(500).send('Erro ao carregar demo');
+        console.error('Erro ao escrever log:', error);
     }
+}
+
+// Middleware para interceptar e bloquear elementos Lovable
+app.use(async (req, res, next) => {
+    const url = req.url.toLowerCase();
+    if (url.includes('lovable')) {
+        await logToFile(`Tentativa de acesso bloqueada: ${req.url} - IP: ${req.ip}`);
+        return res.status(403).send('Acesso negado');
+    }
+    next();
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor de teste rodando em http://localhost:${PORT}`);
-    console.log(`Acesse http://localhost:${PORT}/demo-secure.html para ver a demo`);
+// Middleware para servir arquivos estáticos
+app.use(express.static('docs'));
+
+// Middleware para modificar respostas HTML
+app.use(async (req, res, next) => {
+    const originalSend = res.send;
+    
+    res.send = async function(body) {
+        if (typeof body === 'string' && body.includes('<!DOCTYPE html>')) {
+            // Bloqueia elementos Lovable no HTML
+            body = body.replace(/<[^>]*(?:lovable|Lovable)[^>]*>/g, '<!-- Elemento bloqueado -->');
+            
+            // Remove atributos relacionados ao Lovable
+            body = body.replace(/(?:data-lovable|id="lovable[^"]*"|class="lovable[^"]*")/g, '');
+            
+            await logToFile(`Conteúdo HTML sanitizado - URL: ${req.url}`);
+        }
+        originalSend.call(this, body);
+    };
+    
+    next();
+});
+
+// Rota para o proxy demo
+app.get('/.netlify/functions/proxy-demo', async (req, res) => {
+    await logToFile('Requisição ao proxy demo');
+    res.redirect('/demo-secure.html');
+});
+
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
+    logToFile('Servidor iniciado');
 });
