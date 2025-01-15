@@ -89,6 +89,95 @@ A versão mobile do sistema oferece:
 - **Relatórios Detalhados**: Visão completa do desempenho individual e em equipe
 - **Identificação de Padrões**: Análise de tendências para melhorias contínuas
 
+## 🔄 Organograma do Projeto
+
+<div align="center">
+
+![Organograma do Projeto](screenshots/organograma.svg)
+
+</div>
+
+### Estrutura Atual
+
+#### 1. Frontend (React + TypeScript)
+- **Páginas**
+  - `Demo`: Página inicial com demonstração do sistema
+  - `RelatorioDiario`: Análise diária de demandas
+  - `RelatorioGeral`: Visão geral das equipes
+  - `MobileDemo`: Interface otimizada para mobile
+  - `AnalisadorArquivos`: Upload e análise de relatórios
+  - `Dashboard`: Painel principal do sistema
+
+- **Componentes**
+  - `FileUploadAnalyzer`: Processamento de arquivos CSV
+  - `ErrorBoundary`: Tratamento de erros
+  - `Dashboard`: Componentes do painel principal
+  - `UI Components`: Biblioteca de componentes reutilizáveis
+
+### Expansões Futuras
+
+#### 1. Backend (Node.js + Express)
+- API RESTful para gerenciamento de dados
+- Autenticação e autorização
+- Cache e otimização de performance
+- Integração com serviços externos
+
+#### 2. Database (PostgreSQL)
+- Armazenamento estruturado de dados
+- Histórico completo de demandas
+- Backup e recuperação
+- Queries otimizadas
+
+#### 3. Recursos Avançados
+- **Análise Preditiva**
+  - Previsão de demandas
+  - Identificação de padrões
+  - Sugestões automáticas
+
+- **Chatbot de Suporte**
+  - Atendimento automatizado
+  - FAQ inteligente
+  - Direcionamento de demandas
+
+- **Dashboards Personalizáveis**
+  - Widgets configuráveis
+  - Métricas personalizadas
+  - Temas e layouts flexíveis
+
+#### 4. Mobile Features
+- **Push Notifications**
+  - Alertas em tempo real
+  - Priorização de mensagens
+  - Configurações personalizadas
+
+- **Offline Mode**
+  - Sincronização automática
+  - Cache local
+  - Operações offline
+
+- **Gestures & UX**
+  - Interações touch otimizadas
+  - Navegação intuitiva
+  - Atualizações em tempo real
+
+### Tecnologias Utilizadas
+
+- **Frontend**
+  - React 18
+  - TypeScript 5
+  - Tailwind CSS
+  - Shadcn/ui
+  - Vite
+
+- **Futuras Implementações**
+  - Node.js
+  - Express
+  - PostgreSQL
+  - Redis (cache)
+  - WebSocket
+  - Machine Learning
+  - PWA
+
 ## 💡 Inspiração e Agradecimentos
 
 Este projeto foi inspirado nas necessidades reais do ambiente corporativo e contou com contribuições valiosas, especialmente de **Ediane F.**, que compartilhou insights fundamentais:
