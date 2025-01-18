@@ -3,640 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Análise de Demandas</title>
+    <title>RELATÓRIO GERAL DE DEMANDAS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --success-color: #27ae60;
-            --warning-color: #f1c40f;
-            --danger-color: #e74c3c;
-        }
-        
         body {
-            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
-        
-        .navbar {
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .navbar-brand {
-            color: white !important;
-            font-weight: 600;
-            font-size: 1.5rem;
-        }
-        
-        .card {
-            border: none;
+        .dashboard-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
             border-radius: 10px;
+            margin-bottom: 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
+        }
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s;
         }
-        
-        .card:hover {
+        .metric-card:hover {
             transform: translateY(-5px);
         }
-        
-        .card-header {
-            background-color: white;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding: 1rem;
-            border-radius: 10px 10px 0 0 !important;
-        }
-        
-        .card-title {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .card-body {
-            padding: 1.5rem;
-        }
-        
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .metric-label {
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .filter-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-select, .form-control {
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .form-select:focus, .form-control:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-        }
-        
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--accent-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .metric-trend {
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        
-        .trend-up {
-            color: var(--success-color);
-        }
-        
-        .trend-down {
-            color: var(--danger-color);
-        }
-        
         .chart-container {
-            min-height: 400px;
-        }
-        
-        @media (max-width: 768px) {
-            .card {
-                margin-bottom: 1rem;
-            }
-            
-            .metric-value {
-                font-size: 1.5rem;
-            }
-        }
-        
-        .graph-container {
             background: white;
-            padding: 1rem;
             border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
-
-        .graph-container img {
+        .team-section {
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .chart-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .team-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .chart-image {
             width: 100%;
             height: auto;
-            border-radius: 5px;
-        }
-
-        .graph-description {
-            margin-top: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .insights-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .insights-list li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .insights-list li:before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .team-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-header {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="text-center mb-5">
-            <h1 class="display-4">Dashboard de Análise de Demandas</h1>
-            <p class="lead">Visualização e análise de métricas de desempenho</p>
-        </header>
+        <!-- Header -->
+        <div class="dashboard-header text-center">
+            <h1 class="display-4">RELATÓRIO GERAL DE DEMANDAS</h1>
+            <p class="lead">Data: 10/01/2025</p>
+        </div>
 
-        <!-- Seção de Gráficos -->
-        <section class="mb-5">
-            <h2 class="text-center mb-4">📊 Análise de Dados</h2>
-            
-            <!-- Distribuição de Status -->
-            <div class="graph-container">
-                <h3>Distribuição de Status por Grupo</h3>
-                <img src="images/reports/status_distribution.png" alt="Distribuição de Status">
-                <div class="graph-description">
-                    <p>Este gráfico apresenta a distribuição das demandas por status para cada grupo, permitindo:</p>
-                    <ul class="insights-list">
-                        <li>Visualização da proporção de demandas resolvidas vs pendentes</li>
-                        <li>Comparação direta entre os grupos</li>
-                        <li>Identificação de gargalos e eficiência</li>
-                    </ul>
+        <!-- Comparativo de Equipes -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="chart-container">
+                    <h2 class="chart-title">Comparativo de Desempenho entre Equipes</h2>
+                    <img src="images/reports/comparativo_equipes.png" alt="Comparativo de Equipes" class="chart-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Distribuição de Pendências -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="chart-container">
+                    <h2 class="chart-title">Distribuição de Pendências por Equipe</h2>
+                    <img src="images/reports/distribuicao_pendencias.png" alt="Distribuição de Pendências" class="chart-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Totalizadores -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="chart-container">
+                    <h2 class="chart-title">Totalizadores Gerais</h2>
+                    <img src="images/reports/totalizadores.png" alt="Totalizadores" class="chart-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipe Julio -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="team-section">
+                    <h3> Equipe Julio</h3>
+                    <div class="team-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">140</div>
+                            <div class="stat-label"> Resolvidos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">102</div>
+                            <div class="stat-label"> Pendentes Receptivo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">701</div>
+                            <div class="stat-label"> Pendentes Ativo</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Comparação entre Grupos -->
-            <div class="graph-container">
-                <h3>Comparação entre Grupos</h3>
-                <img src="images/reports/group_comparison.png" alt="Comparação entre Grupos">
-                <div class="graph-description">
-                    <p>Análise comparativa detalhada entre os grupos:</p>
-                    <ul class="insights-list">
-                        <li>Total de demandas por grupo</li>
-                        <li>Taxa de resolução (%)</li>
-                        <li>Proporção de demandas receptivas</li>
-                        <li>Eficiência relativa entre equipes</li>
-                    </ul>
+            <!-- Equipe Adriano/Leandro -->
+            <div class="col-md-6">
+                <div class="team-section">
+                    <h3> Equipe Adriano/Leandro</h3>
+                    <div class="team-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">130</div>
+                            <div class="stat-label"> Resolvidos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">161</div>
+                            <div class="stat-label"> Pendentes Receptivo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">482</div>
+                            <div class="stat-label"> Pendentes Ativo</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Evolução Temporal -->
-            <div class="graph-container">
-                <h3>Evolução Temporal das Demandas</h3>
-                <img src="images/reports/temporal_evolution.png" alt="Evolução Temporal">
-                <div class="graph-description">
-                    <p>Acompanhamento da evolução das demandas ao longo do tempo:</p>
-                    <ul class="insights-list">
-                        <li>Tendências de volume de trabalho</li>
-                        <li>Padrões sazonais</li>
-                        <li>Picos de demanda</li>
-                        <li>Comparação do fluxo entre grupos</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Equipes -->
-        <section class="mb-5">
-            <h2 class="text-center mb-4">👥 Análise por Equipe</h2>
-            
-            <!-- Equipe Julio -->
-            <div class="team-section">
-                <h3 class="team-header">Equipe Julio</h3>
-                <ul class="insights-list">
-                    <li>Foco em demandas receptivas</li>
-                    <li>Alta taxa de resolução</li>
-                    <li>Picos de demanda bem gerenciados</li>
-                </ul>
-            </div>
-
-            <!-- Equipe Leandro/Adriano -->
-            <div class="team-section">
-                <h3 class="team-header">Equipe Leandro/Adriano</h3>
-                <ul class="insights-list">
-                    <li>Equilíbrio entre demandas ativas e receptivas</li>
-                    <li>Consistência na resolução</li>
-                    <li>Distribuição uniforme de carga de trabalho</li>
-                </ul>
-            </div>
-        </section>
+        </div>
     </div>
 
-    <div id="root"></div>
-    <script type="text/babel">
-        function App() {
-            const [loading, setLoading] = React.useState(true);
-            const [data, setData] = React.useState(null);
-            const [error, setError] = React.useState(null);
-            const [dateRange, setDateRange] = React.useState({
-                startDate: new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0],
-                endDate: new Date().toISOString().split('T')[0]
-            });
-            const [selectedGroup, setSelectedGroup] = React.useState('all');
-            const [selectedResponsible, setSelectedResponsible] = React.useState('all');
-            const [groupOptions, setGroupOptions] = React.useState([]);
-            const [responsibleOptions, setResponsibleOptions] = React.useState([]);
-
-            React.useEffect(() => {
-                fetchData();
-            }, [dateRange, selectedGroup, selectedResponsible]);
-
-            const fetchData = async () => {
-                try {
-                    setLoading(true);
-                    const params = new URLSearchParams({
-                        start_date: dateRange.startDate,
-                        end_date: dateRange.endDate,
-                        grupo: selectedGroup,
-                        responsavel: selectedResponsible
-                    });
-                    
-                    const response = await fetch(`http://localhost:5000/api/data?${params}`);
-                    const result = await response.json();
-                    
-                    if (result.error) {
-                        setError(result.error);
-                        return;
-                    }
-                    
-                    setData(result);
-                    setError(null);
-                    
-                    const groupOptions = result.grupos.map(g => ({
-                        value: g,
-                        label: `Equipe ${g}`
-                    }));
-                    setGroupOptions([{ value: 'all', label: 'Todas as Equipes' }, ...groupOptions]);
-                    
-                    const respOptions = result.responsaveis
-                        .filter(r => r && r.toLowerCase() !== 'nan')
-                        .map(r => ({
-                            value: r,
-                            label: r
-                        }));
-                    setResponsibleOptions([{ value: 'all', label: 'Todos os Responsáveis' }, ...respOptions]);
-                    
-                } catch (error) {
-                    setError('Erro ao carregar dados. Por favor, tente novamente.');
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            const renderChart = (elementId, data, layout) => {
-                React.useEffect(() => {
-                    Plotly.newPlot(elementId, data, {
-                        ...layout,
-                        template: 'plotly_white',
-                        font: {
-                            family: 'Segoe UI, sans-serif'
-                        }
-                    });
-                }, [data, layout]);
-
-                return <div id={elementId} className="chart-container"></div>;
-            };
-
-            const renderMetricCard = (value, label, icon, trend = null) => (
-                <div className="col-md-4">
-                    <div className="card h-100">
-                        <div className="card-body">
-                            <div className="d-flex align-items-center mb-3">
-                                <i className={`bi bi-${icon} text-primary me-2`} style={{fontSize: '1.5rem'}}></i>
-                                <h6 className="card-title mb-0">{label}</h6>
-                            </div>
-                            <div className="metric-value">{value}</div>
-                            {trend && (
-                                <div className={`metric-trend ${trend.direction === 'up' ? 'trend-up' : 'trend-down'}`}>
-                                    <i className={`bi bi-arrow-${trend.direction}`}></i>
-                                    <span>{trend.value}% em relação ao período anterior</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            );
-
-            return (
-                <>
-                    {loading && (
-                        <div className="loading-overlay">
-                            <div className="spinner"></div>
-                        </div>
-                    )}
-                    
-                    <nav className="navbar navbar-dark mb-4">
-                        <div className="container">
-                            <span className="navbar-brand">
-                                <i className="bi bi-graph-up me-2"></i>
-                                Dashboard de Análise de Demandas
-                            </span>
-                        </div>
-                    </nav>
-
-                    <div className="container">
-                        {error && (
-                            <div className="alert alert-danger" role="alert">
-                                <i className="bi bi-exclamation-triangle me-2"></i>
-                                {error}
-                            </div>
-                        )}
-
-                        <div className="filter-section">
-                            <div className="card-title mb-3">
-                                <i className="bi bi-funnel"></i>
-                                Filtros
-                            </div>
-                            <div className="row g-3">
-                                <div className="col-md-4">
-                                    <label className="form-label">Período</label>
-                                    <div className="d-flex gap-2">
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            value={dateRange.startDate}
-                                            onChange={(e) => setDateRange({...dateRange, startDate: e.target.value})}
-                                        />
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            value={dateRange.endDate}
-                                            onChange={(e) => setDateRange({...dateRange, endDate: e.target.value})}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <label className="form-label">Grupo</label>
-                                    <select
-                                        className="form-select"
-                                        value={selectedGroup}
-                                        onChange={(e) => setSelectedGroup(e.target.value)}
-                                    >
-                                        {groupOptions.map(option => (
-                                            <option key={option.value} value={option.value}>{option.label}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="col-md-4">
-                                    <label className="form-label">Responsável</label>
-                                    <select
-                                        className="form-select"
-                                        value={selectedResponsible}
-                                        onChange={(e) => setSelectedResponsible(e.target.value)}
-                                    >
-                                        {responsibleOptions.map(option => (
-                                            <option key={option.value} value={option.value}>{option.label}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row g-3 mb-4">
-                            {renderMetricCard(
-                                data?.totalizadores?.total_resolvidos || 0,
-                                "Total de Demandas Resolvidas",
-                                "check-circle",
-                                { direction: 'up', value: 15 }
-                            )}
-                            {renderMetricCard(
-                                `${((data?.totalizadores?.total_resolvidos / data?.totalizadores?.total_analises) * 100 || 0).toFixed(1)}%`,
-                                "Taxa de Resolução",
-                                "graph-up",
-                                { direction: 'up', value: 5 }
-                            )}
-                            {renderMetricCard(
-                                (data?.totalizadores?.total_resolvidos / 30 || 0).toFixed(1),
-                                "Média Diária",
-                                "calendar3",
-                                { direction: 'up', value: 8 }
-                            )}
-                        </div>
-
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="card">
-                                    <div className="card-header">
-                                        <h5 className="card-title">
-                                            <i className="bi bi-graph-up"></i>
-                                            Evolução Diária
-                                        </h5>
-                                    </div>
-                                    <div className="card-body">
-                                        {renderChart('daily-chart', [{
-                                            x: data?.evolucao_diaria?.map(d => d.data) || [],
-                                            y: data?.evolucao_diaria?.map(d => d.quantidade) || [],
-                                            type: 'scatter',
-                                            mode: 'lines+markers',
-                                            name: 'Demandas',
-                                            line: {
-                                                color: '#3498db',
-                                                width: 3
-                                            },
-                                            marker: {
-                                                color: '#2980b9',
-                                                size: 8
-                                            }
-                                        }], {
-                                            margin: { t: 20, r: 20, b: 40, l: 60 },
-                                            height: 400,
-                                            xaxis: {
-                                                title: 'Data',
-                                                gridcolor: '#f8f9fa',
-                                                zeroline: false
-                                            },
-                                            yaxis: {
-                                                title: 'Quantidade',
-                                                gridcolor: '#f8f9fa',
-                                                zeroline: false
-                                            },
-                                            paper_bgcolor: 'white',
-                                            plot_bgcolor: 'white',
-                                            showlegend: false
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="card">
-                                    <div className="card-header">
-                                        <h5 className="card-title">
-                                            <i className="bi bi-bar-chart"></i>
-                                            Desempenho por Grupo
-                                        </h5>
-                                    </div>
-                                    <div className="card-body">
-                                        {renderChart('group-chart', [{
-                                            x: data?.desempenho_grupo?.map(g => `Equipe ${g.grupo}`) || [],
-                                            y: data?.desempenho_grupo?.map(g => g.resolvidos) || [],
-                                            type: 'bar',
-                                            name: 'Resolvidos',
-                                            marker: {
-                                                color: '#27ae60'
-                                            }
-                                        }, {
-                                            x: data?.desempenho_grupo?.map(g => `Equipe ${g.grupo}`) || [],
-                                            y: data?.desempenho_grupo?.map(g => g.pendentes) || [],
-                                            type: 'bar',
-                                            name: 'Pendentes',
-                                            marker: {
-                                                color: '#e74c3c'
-                                            }
-                                        }], {
-                                            margin: { t: 20, r: 20, b: 40, l: 60 },
-                                            height: 400,
-                                            barmode: 'group',
-                                            xaxis: {
-                                                title: 'Grupo',
-                                                gridcolor: '#f8f9fa',
-                                                zeroline: false
-                                            },
-                                            yaxis: {
-                                                title: 'Quantidade',
-                                                gridcolor: '#f8f9fa',
-                                                zeroline: false
-                                            },
-                                            paper_bgcolor: 'white',
-                                            plot_bgcolor: 'white',
-                                            legend: {
-                                                orientation: 'h',
-                                                y: -0.2
-                                            }
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row mt-4">
-                            <div className="col-12">
-                                <div className="card">
-                                    <div className="card-header">
-                                        <h5 className="card-title">
-                                            <i className="bi bi-people"></i>
-                                            Top 10 - Desempenho Individual
-                                        </h5>
-                                    </div>
-                                    <div className="card-body">
-                                        {renderChart('individual-chart', [{
-                                            x: data?.desempenho_individual?.map(d => d.responsavel) || [],
-                                            y: data?.desempenho_individual?.map(d => d.resolvidos) || [],
-                                            type: 'bar',
-                                            name: 'Resolvidos',
-                                            marker: {
-                                                color: '#27ae60'
-                                            }
-                                        }, {
-                                            x: data?.desempenho_individual?.map(d => d.responsavel) || [],
-                                            y: data?.desempenho_individual?.map(d => d.pendentes) || [],
-                                            type: 'bar',
-                                            name: 'Pendentes',
-                                            marker: {
-                                                color: '#e74c3c'
-                                            }
-                                        }], {
-                                            margin: { t: 20, r: 20, b: 100, l: 60 },
-                                            height: 400,
-                                            barmode: 'group',
-                                            xaxis: {
-                                                title: 'Responsável',
-                                                tickangle: -45,
-                                                gridcolor: '#f8f9fa',
-                                                zeroline: false
-                                            },
-                                            yaxis: {
-                                                title: 'Quantidade',
-                                                gridcolor: '#f8f9fa',
-                                                zeroline: false
-                                            },
-                                            paper_bgcolor: 'white',
-                                            plot_bgcolor: 'white',
-                                            legend: {
-                                                orientation: 'h',
-                                                y: -0.2
-                                            }
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            );
-        }
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
