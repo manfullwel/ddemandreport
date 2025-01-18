@@ -2,18 +2,28 @@
 
 Dashboard profissional para análise e monitoramento de demandas, com foco em métricas de desempenho e insights em tempo real.
 
+[![Deploy to GitHub Pages](https://github.com/manfullwel/ddemandreport/actions/workflows/deploy.yml/badge.svg)](https://github.com/manfullwel/ddemandreport/actions/workflows/deploy.yml)
+
 ## 🔗 Links Importantes
 
 - **[Dashboard](https://manfullwel.github.io/ddemandreport/docs/index.html)**: Acesse o dashboard em funcionamento
 - **[Repositório](https://github.com/manfullwel/ddemandreport)**: Código fonte do projeto
 - **[Relatório Diário](https://manfullwel.github.io/ddemandreport/docs/index.html#relatorio)**: Relatório atualizado diariamente
 
+## 🌐 Páginas do Projeto
+
+| Página | Link | Descrição |
+|--------|------|-----------|
+| 📊 **Dashboard** | [Acessar Dashboard](https://manfullwel.github.io/ddemandreport/docs/index.html) | Dashboard principal com todas as métricas |
+| 📝 **Relatório Diário** | [Ver Relatório](https://manfullwel.github.io/ddemandreport/docs/index.html#relatorio) | Relatório atualizado diariamente |
+| 💻 **Código Fonte** | [GitHub](https://github.com/manfullwel/ddemandreport) | Repositório do projeto |
+
 ## 👥 Colaboradores
 
 Um agradecimento especial aos colaboradores que tornaram este projeto possível:
 
-- **Ediane F.**: Análise de Requisitos e UX Design
-- **Victor A.**: Desenvolvimento Mobile e Infraestrutura
+- **Ediane F.** 
+- **Victor A.** 
 - **Equipe de Desenvolvimento**: Implementação e Testes
 
 ## 🔧 Configuração do Google Sheets
