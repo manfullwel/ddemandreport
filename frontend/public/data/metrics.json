@@ -1,0 +1,150 @@
+{
+  "teams": [
+    {
+      "name": "Desenvolvimento",
+      "completedTasks": 45,
+      "inProgressTasks": 12,
+      "efficiency": 89,
+      "members": [
+        {
+          "name": "João Silva",
+          "tasksCompleted": 15
+        },
+        {
+          "name": "Maria Santos",
+          "tasksCompleted": 18
+        },
+        {
+          "name": "Pedro Oliveira",
+          "tasksCompleted": 12
+        }
+      ]
+    },
+    {
+      "name": "Design",
+      "completedTasks": 32,
+      "inProgressTasks": 8,
+      "efficiency": 92,
+      "members": [
+        {
+          "name": "Ana Costa",
+          "tasksCompleted": 12
+        },
+        {
+          "name": "Lucas Ferreira",
+          "tasksCompleted": 20
+        }
+      ]
+    },
+    {
+      "name": "Suporte",
+      "completedTasks": 128,
+      "inProgressTasks": 15,
+      "efficiency": 95,
+      "members": [
+        {
+          "name": "Carlos Souza",
+          "tasksCompleted": 45
+        },
+        {
+          "name": "Mariana Lima",
+          "tasksCompleted": 42
+        },
+        {
+          "name": "Rafael Santos",
+          "tasksCompleted": 41
+        }
+      ]
+    }
+  ],
+  "dailyStats": [
+    {
+      "date": "2025-01-10",
+      "completedTasks": 12
+    },
+    {
+      "date": "2025-01-11",
+      "completedTasks": 15
+    },
+    {
+      "date": "2025-01-12",
+      "completedTasks": 8
+    },
+    {
+      "date": "2025-01-13",
+      "completedTasks": 20
+    },
+    {
+      "date": "2025-01-14",
+      "completedTasks": 18
+    },
+    {
+      "date": "2025-01-15",
+      "completedTasks": 22
+    },
+    {
+      "date": "2025-01-16",
+      "completedTasks": 16
+    },
+    {
+      "date": "2025-01-17",
+      "completedTasks": 19
+    }
+  ],
+  "recentActivities": [
+    {
+      "id": "1",
+      "taskName": "Implementar nova funcionalidade de relatórios",
+      "assignee": "João Silva",
+      "status": "completed",
+      "timestamp": "2025-01-17T15:30:00Z"
+    },
+    {
+      "id": "2",
+      "taskName": "Redesign da página inicial",
+      "assignee": "Ana Costa",
+      "status": "in_progress",
+      "timestamp": "2025-01-17T14:45:00Z"
+    },
+    {
+      "id": "3",
+      "taskName": "Correção de bugs no módulo de login",
+      "assignee": "Pedro Oliveira",
+      "status": "completed",
+      "timestamp": "2025-01-17T13:20:00Z"
+    },
+    {
+      "id": "4",
+      "taskName": "Atendimento ao cliente - Caso #1234",
+      "assignee": "Carlos Souza",
+      "status": "completed",
+      "timestamp": "2025-01-17T12:15:00Z"
+    }
+  ],
+  "highlights": [
+    {
+      "id": "1",
+      "title": "Recorde de Produtividade",
+      "description": "A equipe de suporte atingiu um novo recorde de tickets resolvidos em um único dia!",
+      "userName": "Carlos Souza",
+      "userRole": "Líder de Suporte",
+      "userAvatar": "https://i.pravatar.cc/150?u=carlos"
+    },
+    {
+      "id": "2",
+      "title": "Projeto Concluído Antes do Prazo",
+      "description": "O time de desenvolvimento entregou o módulo de relatórios 3 dias antes do previsto.",
+      "userName": "João Silva",
+      "userRole": "Desenvolvedor Senior",
+      "userAvatar": "https://i.pravatar.cc/150?u=joao"
+    },
+    {
+      "id": "3",
+      "title": "Nova Interface Aprovada",
+      "description": "O novo design da página inicial foi aprovado pelo cliente com elogios!",
+      "userName": "Ana Costa",
+      "userRole": "Designer UI/UX",
+      "userAvatar": "https://i.pravatar.cc/150?u=ana"
+    }
+  ]
+}
