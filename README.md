@@ -4,9 +4,9 @@ Dashboard profissional para análise e monitoramento de demandas, com foco em m�
 
 ## 🔗 Links Importantes
 
-- **[Demonstração ao Vivo](https://manfullwel.github.io/ddemandreport/)**: Veja o dashboard em funcionamento
-- **[Documentação](https://github.com/manfullwel/ddemandreport/wiki)**: Guia completo de uso
-- **[Relatórios](https://manfullwel.github.io/ddemandreport/reports)**: Histórico de relatórios
+- **[Dashboard](https://manfullwel.github.io/ddemandreport/docs/index.html)**: Acesse o dashboard em funcionamento
+- **[Repositório](https://github.com/manfullwel/ddemandreport)**: Código fonte do projeto
+- **[Relatório Diário](https://manfullwel.github.io/ddemandreport/docs/index.html#relatorio)**: Relatório atualizado diariamente
 
 ## 👥 Colaboradores
 
