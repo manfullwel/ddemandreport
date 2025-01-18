@@ -34,6 +34,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Arquivos de configuração com credenciais
+config.js
+.env
+
 # IDEs
 .idea/
 .vscode/

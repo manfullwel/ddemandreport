@@ -16,6 +16,33 @@ Um agradecimento especial aos colaboradores que tornaram este projeto possível:
 - **Victor A.**: Desenvolvimento Mobile e Infraestrutura
 - **Equipe de Desenvolvimento**: Implementação e Testes
 
+## 🔧 Configuração do Google Sheets
+
+Para configurar a integração com o Google Sheets, siga estes passos:
+
+1. **Obtenha as Credenciais**:
+   - Acesse o [Google Cloud Console](https://console.cloud.google.com)
+   - Crie um novo projeto ou selecione um existente
+   - Ative a Google Sheets API
+   - Crie uma chave de API em "Credenciais"
+
+2. **Configure o Projeto**:
+   - Copie o arquivo `config.example.js` para `config.js`
+   - Adicione sua chave API no arquivo `config.js`
+   - Adicione o ID da sua planilha (encontrado na URL)
+   - Ajuste o range conforme sua estrutura de dados
+
+3. **Estrutura da Planilha**:
+   A planilha deve ter as seguintes colunas:
+   - Colaborador
+   - Data
+   - Status (Resolvido/Pendente)
+   - Tipo (Receptivo/Ativo)
+   - Equipe (Julio/Adriano)
+
+4. **Compartilhamento**:
+   - Certifique-se de que a planilha está compartilhada com permissão de leitura
+
 ## 📱 Versão Mobile (Em Desenvolvimento)
 
 Estamos desenvolvendo uma versão mobile completa do Sistema de Análise de Demandas, que estará disponível para iOS e Android. O aplicativo oferecerá todas as funcionalidades do dashboard web em uma interface otimizada para dispositivos móveis.
