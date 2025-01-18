@@ -173,6 +173,46 @@ const PerformanceChart: React.FC = () => {
 ![Individual Metrics](docs/images/individual-metrics.png)
 - Detalhamento das métricas individuais
 
+## 📊 Análise de Dados e Gráficos
+
+### Distribuição de Status por Grupo
+![Status Distribution](public/reports/status_distribution.png)
+
+Este gráfico apresenta a distribuição das demandas por status (Resolvido/Pendente) para cada grupo. Pontos importantes:
+- Visualização da proporção de demandas resolvidas vs pendentes
+- Comparação direta entre os grupos
+- Identificação de gargalos e eficiência
+
+### Comparação entre Grupos
+![Group Comparison](public/reports/group_comparison.png)
+
+Análise comparativa entre os grupos, mostrando:
+- Total de demandas por grupo
+- Taxa de resolução (%)
+- Proporção de demandas receptivas
+- Eficiência relativa entre equipes
+
+### Evolução Temporal das Demandas
+![Temporal Evolution](public/reports/temporal_evolution.png)
+
+Acompanhamento da evolução das demandas ao longo do tempo:
+- Tendências de volume de trabalho
+- Padrões sazonais
+- Picos de demanda
+- Comparação do fluxo entre grupos
+
+### Insights Principais
+
+#### Equipe Julio
+- Foco em demandas receptivas
+- Alta taxa de resolução
+- Picos de demanda bem gerenciados
+
+#### Equipe Leandro/Adriano
+- Equilíbrio entre demandas ativas e receptivas
+- Consistência na resolução
+- Distribuição uniforme de carga de trabalho
+
 ## 🔄 Atualizações e Manutenção
 
 - Atualizações automáticas a cada 5 minutos
