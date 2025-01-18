@@ -93,6 +93,50 @@ def analisar_dados():
         'insights': insights
     }
 
+def analisar_dados_por_pessoa():
+    df = processar_planilha()
+    
+    # Período de análise (30 dias)
+    periodo_dias = 30
+    
+    resultados = {}
+    
+    # Análise por pessoa
+    for pessoa in df['RESPONSAVEL'].unique():
+        df_pessoa = df[df['RESPONSAVEL'] == pessoa]
+        
+        # Cálculos básicos
+        total_demandas = df_pessoa['DEMANDAS'].sum()
+        resolvidas = df_pessoa[df_pessoa['STATUS'] == 'RESOLVIDO']['DEMANDAS'].sum()
+        percentual = (resolvidas / total_demandas * 100) if total_demandas > 0 else 0
+        media_diaria = total_demandas / periodo_dias
+        
+        # Receptivo/Ativo
+        receptivo = df_pessoa[df_pessoa['TIPO'] == 'RECEPTIVO']['DEMANDAS'].sum()
+        ativo = df_pessoa[df_pessoa['TIPO'] == 'ATIVO']['DEMANDAS'].sum()
+        
+        # Pico de demandas
+        pico_data = df_pessoa.loc[df_pessoa['DEMANDAS'].idxmax()]
+        
+        # Determinar equipe
+        equipe = 'julio' if pessoa in ['JAIRANE', 'ANA GESSICA', 'FELIPE'] else 'adriano'
+        
+        resultados[pessoa] = {
+            'equipe': equipe,
+            'total': int(total_demandas),
+            'resolvidas': int(resolvidas),
+            'percentual': round(percentual, 1),
+            'mediadiaria': round(media_diaria, 1),
+            'receptivo': int(receptivo),
+            'ativo': int(ativo),
+            'pico': {
+                'quantidade': int(pico_data['DEMANDAS']),
+                'data': pico_data['DATA'].strftime('%Y-%m-%d %H:%M:%S')
+            }
+        }
+    
+    return resultados
+
 def gerar_metricas_por_responsavel():
     df = processar_planilha()
     
@@ -171,6 +215,16 @@ if __name__ == "__main__":
                 print(f"  Média Diária: {dados['media_diaria']} em {dados['dias_ativos']} dias")
                 print(f"  Receptivo/Ativo: {dados['receptivo']}/{dados['ativo']}")
                 print(f"  Pico: {dados['pico_quantidade']} demandas em {dados['pico_data']}")
+        
+        print("\nMétricas por Pessoa:")
+        metricas_pessoa = analisar_dados_por_pessoa()
+        for pessoa, dados in metricas_pessoa.items():
+            print(f"\n{pessoa}:")
+            print(f"  Total Demandas: {dados['total']}")
+            print(f"  Resolvidas: {dados['resolvidas']} ({dados['percentual']}%)")
+            print(f"  Média Diária: {dados['mediadiaria']}")
+            print(f"  Receptivo/Ativo: {dados['receptivo']}/{dados['ativo']}")
+            print(f"  Pico: {dados['pico']['quantidade']} demandas em {dados['pico']['data']}")
         
     except Exception as e:
         print(f"\nErro durante a análise: {str(e)}")

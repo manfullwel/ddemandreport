@@ -75,6 +75,46 @@
             border-radius: 8px;
             margin-top: 15px;
         }
+        .colaborador-card .card {
+            transition: transform 0.2s;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .colaborador-card .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .colaborador-card .card-header {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border-bottom: none;
+        }
+        
+        .colaborador-card .progress {
+            height: 10px;
+            margin-top: 10px;
+        }
+        
+        .colaborador-card .progress-bar {
+            transition: width 0.6s ease;
+        }
+        
+        .form-select, .form-control {
+            border-radius: 20px;
+            border: 1px solid #dee2e6;
+            padding: 8px 16px;
+        }
+        
+        .form-select:focus, .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+            border-color: #3498db;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -160,6 +200,89 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para carregar dados do Python
+        async function carregarDadosPessoas() {
+            try {
+                const response = await fetch('data/metricas_pessoas.json');
+                return await response.json();
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                return {};
+            }
+        }
+
+        // Função para criar card de colaborador
+        function criarCardColaborador(nome, dados) {
+            const template = document.querySelector('#cardColaborador');
+            const clone = template.content.cloneNode(true);
+            
+            clone.querySelector('.nome-colaborador').textContent = nome;
+            clone.querySelector('.equipe-colaborador').textContent = 
+                `Equipe ${dados.equipe === 'julio' ? 'Julio' : 'Adriano/Leandro'}`;
+            clone.querySelector('.total-demandas').textContent = dados.total;
+            clone.querySelector('.demandas-resolvidas').textContent = 
+                `${dados.resolvidas} (${dados.percentual}%)`;
+            clone.querySelector('.media-diaria').textContent = 
+                `${dados.mediadiaria} em 30 dias`;
+            clone.querySelector('.receptivo-ativo').textContent = 
+                `${dados.receptivo}/${dados.ativo}`;
+            clone.querySelector('.pico-demandas').textContent = 
+                `${dados.pico.quantidade} em ${new Date(dados.pico.data).toLocaleDateString()}`;
+            
+            const progressBar = clone.querySelector('.progress-bar');
+            progressBar.style.width = `${dados.percentual}%`;
+            progressBar.classList.add(dados.percentual >= 80 ? 'bg-success' : 
+                                   dados.percentual >= 70 ? 'bg-warning' : 'bg-danger');
+            
+            return clone;
+        }
+
+        // Função para atualizar a exibição
+        async function atualizarExibicao() {
+            const grid = document.querySelector('#colaboradoresGrid');
+            const equipeFilter = document.querySelector('#equipeFiltro').value;
+            const ordenacao = document.querySelector('#ordenarPor').value;
+            const busca = document.querySelector('#busca').value.toLowerCase();
+            
+            // Limpar grid
+            grid.innerHTML = '';
+            
+            // Carregar dados atualizados
+            const dadosColaboradores = await carregarDadosPessoas();
+            
+            // Filtrar e ordenar colaboradores
+            let colaboradores = Object.entries(dadosColaboradores)
+                .filter(([nome, dados]) => {
+                    return (equipeFilter === 'todos' || dados.equipe === equipeFilter) &&
+                           nome.toLowerCase().includes(busca);
+                })
+                .sort(([nomeA, dadosA], [nomeB, dadosB]) => {
+                    switch(ordenacao) {
+                        case 'resolvidas':
+                            return dadosB.resolvidas - dadosA.resolvidas;
+                        case 'percentual':
+                            return dadosB.percentual - dadosA.percentual;
+                        case 'media':
+                            return dadosB.mediadiaria - dadosA.mediadiaria;
+                        default:
+                            return nomeA.localeCompare(nomeB);
+                    }
+                });
+            
+            // Criar cards
+            colaboradores.forEach(([nome, dados]) => {
+                grid.appendChild(criarCardColaborador(nome, dados));
+            });
+        }
+
+        // Adicionar event listeners
+        document.querySelector('#equipeFiltro').addEventListener('change', atualizarExibicao);
+        document.querySelector('#ordenarPor').addEventListener('change', atualizarExibicao);
+        document.querySelector('#busca').addEventListener('input', atualizarExibicao);
+
+        // Inicializar exibição quando o documento estiver pronto
+        document.addEventListener('DOMContentLoaded', atualizarExibicao);
+    </script>
 </body>
 </html>
