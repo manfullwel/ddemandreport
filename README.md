@@ -175,8 +175,10 @@ const PerformanceChart: React.FC = () => {
 
 ## 📊 Análise de Dados e Gráficos
 
+Confira nossa [página de demonstração](https://manfullwel.github.io/ddemandreport/) para visualizar os gráficos interativos e análises detalhadas.
+
 ### Distribuição de Status por Grupo
-![Status Distribution](public/reports/status_distribution.png)
+![Status Distribution](docs/images/reports/status_distribution.png)
 
 Este gráfico apresenta a distribuição das demandas por status (Resolvido/Pendente) para cada grupo. Pontos importantes:
 - Visualização da proporção de demandas resolvidas vs pendentes
@@ -184,7 +186,7 @@ Este gráfico apresenta a distribuição das demandas por status (Resolvido/Pend
 - Identificação de gargalos e eficiência
 
 ### Comparação entre Grupos
-![Group Comparison](public/reports/group_comparison.png)
+![Group Comparison](docs/images/reports/group_comparison.png)
 
 Análise comparativa entre os grupos, mostrando:
 - Total de demandas por grupo
@@ -193,7 +195,7 @@ Análise comparativa entre os grupos, mostrando:
 - Eficiência relativa entre equipes
 
 ### Evolução Temporal das Demandas
-![Temporal Evolution](public/reports/temporal_evolution.png)
+![Temporal Evolution](docs/images/reports/temporal_evolution.png)
 
 Acompanhamento da evolução das demandas ao longo do tempo:
 - Tendências de volume de trabalho

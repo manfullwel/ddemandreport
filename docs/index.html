@@ -156,9 +156,142 @@
                 font-size: 1.5rem;
             }
         }
+        
+        .graph-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .graph-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .graph-description {
+            margin-top: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .insights-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .insights-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .insights-list li:before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .team-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-header {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header class="text-center mb-5">
+            <h1 class="display-4">Dashboard de Análise de Demandas</h1>
+            <p class="lead">Visualização e análise de métricas de desempenho</p>
+        </header>
+
+        <!-- Seção de Gráficos -->
+        <section class="mb-5">
+            <h2 class="text-center mb-4">📊 Análise de Dados</h2>
+            
+            <!-- Distribuição de Status -->
+            <div class="graph-container">
+                <h3>Distribuição de Status por Grupo</h3>
+                <img src="images/reports/status_distribution.png" alt="Distribuição de Status">
+                <div class="graph-description">
+                    <p>Este gráfico apresenta a distribuição das demandas por status para cada grupo, permitindo:</p>
+                    <ul class="insights-list">
+                        <li>Visualização da proporção de demandas resolvidas vs pendentes</li>
+                        <li>Comparação direta entre os grupos</li>
+                        <li>Identificação de gargalos e eficiência</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Comparação entre Grupos -->
+            <div class="graph-container">
+                <h3>Comparação entre Grupos</h3>
+                <img src="images/reports/group_comparison.png" alt="Comparação entre Grupos">
+                <div class="graph-description">
+                    <p>Análise comparativa detalhada entre os grupos:</p>
+                    <ul class="insights-list">
+                        <li>Total de demandas por grupo</li>
+                        <li>Taxa de resolução (%)</li>
+                        <li>Proporção de demandas receptivas</li>
+                        <li>Eficiência relativa entre equipes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Evolução Temporal -->
+            <div class="graph-container">
+                <h3>Evolução Temporal das Demandas</h3>
+                <img src="images/reports/temporal_evolution.png" alt="Evolução Temporal">
+                <div class="graph-description">
+                    <p>Acompanhamento da evolução das demandas ao longo do tempo:</p>
+                    <ul class="insights-list">
+                        <li>Tendências de volume de trabalho</li>
+                        <li>Padrões sazonais</li>
+                        <li>Picos de demanda</li>
+                        <li>Comparação do fluxo entre grupos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Equipes -->
+        <section class="mb-5">
+            <h2 class="text-center mb-4">👥 Análise por Equipe</h2>
+            
+            <!-- Equipe Julio -->
+            <div class="team-section">
+                <h3 class="team-header">Equipe Julio</h3>
+                <ul class="insights-list">
+                    <li>Foco em demandas receptivas</li>
+                    <li>Alta taxa de resolução</li>
+                    <li>Picos de demanda bem gerenciados</li>
+                </ul>
+            </div>
+
+            <!-- Equipe Leandro/Adriano -->
+            <div class="team-section">
+                <h3 class="team-header">Equipe Leandro/Adriano</h3>
+                <ul class="insights-list">
+                    <li>Equilíbrio entre demandas ativas e receptivas</li>
+                    <li>Consistência na resolução</li>
+                    <li>Distribuição uniforme de carga de trabalho</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
     <div id="root"></div>
     <script type="text/babel">
         function App() {
