@@ -297,7 +297,7 @@ Um sistema completo para análise de demandas com integração entre Google Shee
 
 3. **Configure o Google Sheets**
    - Crie um projeto no [Google Cloud Console](https://console.cloud.google.com)
-   - Habilite a API do Google Sheets
+   - Habilite a Google Sheets API
    - Baixe as credenciais (`credentials.json`)
    - Coloque o arquivo na pasta raiz do projeto
 
@@ -446,3 +446,26 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 Seu Nome - [@seutwitter](https://twitter.com/seutwitter)
 
 Link do Projeto: [https://github.com/seu-usuario/ddemandreport](https://github.com/seu-usuario/ddemandreport)
+
+## 📸 Screenshots Automáticos
+
+O dashboard possui um sistema automatizado de captura de screenshots que é executado a cada 6 horas. Isso garante que a documentação sempre tenha imagens atualizadas do sistema. Os screenshots incluem:
+
+- Visão geral do dashboard
+- Comparação entre equipes
+- Distribuição de demandas
+- Métricas diárias
+
+Os screenshots são salvos automaticamente na pasta `docs/screenshots` e são atualizados no GitHub Pages.
+
+Para capturar screenshots manualmente, você pode:
+
+1. Iniciar o dashboard:
+```bash
+python scripts/api_server.py
+```
+
+2. Em outro terminal, executar o script de captura:
+```bash
+python scripts/capture_screenshots.py
+```
