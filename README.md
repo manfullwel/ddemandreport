@@ -38,10 +38,7 @@ Suas contribuições e inspirações foram fundamentais para o desenvolvimento d
 
 ## 👥 Colaboradores
 
-Um agradecimento especial aos colaboradores que tornaram este projeto possível:
-
-- **Ediane F.** 
-- **Victor A.** 
+[![Equipe de Desenvolvimento](https://github.com/manfullwel/ddemandreport/blob/main/docs/images/equipe.png)](https://github.com/manfullwel/ddemandreport/blob/main/docs/images/equipe.png)
 - **Equipe de Desenvolvimento**: Implementação e Testes
 
 ## 🔧 Configuração do Google Sheets
@@ -461,9 +458,9 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 ## 📧 Contato
 
-Seu Nome - [@seutwitter](https://twitter.com/seutwitter)
+Igor Soares - [@manfullwel](https://github.com/manfullwel)
 
-Link do Projeto: [https://github.com/seu-usuario/ddemandreport](https://github.com/seu-usuario/ddemandreport)
+Link do Projeto: [https://github.com/manfullwel/ddemandreport](https://github.com/manfullwel/ddemandreport)
 
 ## 📸 Screenshots Automáticos
 
