@@ -18,6 +18,24 @@ Dashboard profissional para análise e monitoramento de demandas, com foco em m�
 | 📝 **Relatório Diário** | [Ver Relatório](https://manfullwel.github.io/ddemandreport/docs/index.html#relatorio) | Relatório atualizado diariamente |
 | 💻 **Código Fonte** | [GitHub](https://github.com/manfullwel/ddemandreport) | Repositório do projeto |
 
+## 👤 Autor
+
+**Igor Soares (manfullwel)**
+
+* GitHub: [@manfullwel](https://github.com/manfullwel)
+
+## 🙏 Agradecimentos
+
+Um agradecimento especial a todos que contribuíram para este projeto:
+
+* Ediene F.
+* Nuno S.
+* Victor A.
+* Victor C.
+* Pablo P.
+
+Suas contribuições e inspirações foram fundamentais para o desenvolvimento deste projeto.
+
 ## 👥 Colaboradores
 
 Um agradecimento especial aos colaboradores que tornaram este projeto possível:
@@ -468,4 +486,3 @@ python scripts/api_server.py
 2. Em outro terminal, executar o script de captura:
 ```bash
 python scripts/capture_screenshots.py
-```
