@@ -6,6 +6,13 @@ export interface DailyReport {
   inProgressDemands: number;
   cancelledDemands: number;
   averageResolutionTime: number;
+  Contratos_Resolvidos: number;
+  Pendentes_Receptivo: number;
+  Pendentes_Ativo: number;
+  Quitados: number;
+  Aprovados: number;
+  Nome_Funcionario: string;
+  Data_Relatorio: Date;
 }
 
 export interface DemandSummary {

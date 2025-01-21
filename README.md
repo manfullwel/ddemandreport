@@ -247,3 +247,202 @@ O dashboard é totalmente responsivo e se adapta a diferentes tamanhos de tela:
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+# Dashboard de Análise de Demandas
+
+Um sistema completo para análise de demandas com integração entre Google Sheets e dashboard local, oferecendo visualização em tempo real e sincronização automática de dados.
+
+![Dashboard Preview](docs/images/dashboard_preview.png)
+
+## 🌟 Funcionalidades
+
+- **Dashboard Interativo**
+  - Visualização de métricas em tempo real
+  - Gráficos comparativos entre equipes
+  - Tabelas de resolução diária
+  - Atualização automática dos dados
+
+- **Integração com Google Sheets**
+  - Sincronização bidirecional
+  - Validação de dados em tempo real
+  - Menu personalizado para controle
+  - Notificações de status
+
+- **Análise de Dados**
+  - Métricas por equipe
+  - Comparação de desempenho
+  - Histórico de resoluções
+  - Tendências temporais
+
+## 🚀 Como Usar
+
+### Pré-requisitos
+
+- Python 3.8+
+- Google Account
+- ngrok account (gratuita)
+
+### Instalação
+
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/seu-usuario/ddemandreport.git
+   cd ddemandreport
+   ```
+
+2. **Instale as dependências**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure o Google Sheets**
+   - Crie um projeto no [Google Cloud Console](https://console.cloud.google.com)
+   - Habilite a API do Google Sheets
+   - Baixe as credenciais (`credentials.json`)
+   - Coloque o arquivo na pasta raiz do projeto
+
+4. **Configure o ngrok**
+   - [Baixe e instale o ngrok](https://ngrok.com/download)
+   - Autentique com seu token:
+     ```bash
+     ngrok config add-authtoken seu-token-aqui
+     ```
+
+### Executando o Sistema
+
+1. **Inicie o Servidor API**
+   ```bash
+   python scripts/api_server.py
+   ```
+
+2. **Inicie o Dashboard**
+   ```bash
+   python scripts/dashboard_comparativo.py
+   ```
+
+3. **Crie o Túnel ngrok**
+   ```bash
+   ngrok http 8052
+   ```
+
+4. **Configure o Google Sheets**
+   - Abra sua planilha do Google Sheets
+   - Vá em `Extensões > Apps Script`
+   - Cole o código de `google_sheets_script.gs`
+   - Configure a URL do ngrok no script
+   - Salve e autorize o script
+
+## 📊 Estrutura do Projeto
+
+```
+ddemandreport/
+├── docs/                    # Documentação
+│   └── images/             # Imagens da documentação
+├── scripts/
+│   ├── api_server.py       # Servidor API
+│   ├── dashboard_comparativo.py  # Dashboard principal
+│   ├── google_sheets_sync.py    # Sincronização com Google Sheets
+│   └── google_sheets_script.gs  # Script para Google Apps Script
+├── requirements.txt        # Dependências Python
+└── README.md              # Documentação principal
+```
+
+## 🔧 Configuração do Dashboard
+
+### Configuração do Google Sheets
+
+1. **Estrutura da Planilha**
+   - Planilha "DEMANDAS JULIO"
+   - Planilha "DEMANDA LEANDROADRIANO"
+   - Colunas necessárias:
+     - STATUS (PENDENTE, PRIORIDADE, RESOLVIDO, etc.)
+     - DATA
+     - RESPONSÁVEL
+     - DESCRIÇÃO
+
+2. **Menu do Dashboard**
+   - **Atualizar Dashboard**: Força sincronização
+   - **Configurar URL do ngrok**: Define URL de conexão
+
+### Validações de Dados
+
+- Status válidos:
+  - PENDENTE
+  - PRIORIDADE
+  - RESOLVIDO
+  - ANÁLISE
+  - RECEPTIVO
+  - PRIORIDADE TOTAL
+
+## 📈 Funcionalidades do Dashboard
+
+### Métricas Principais
+
+- Total de demandas resolvidas por equipe
+- Média diária de resoluções
+- Comparativo entre equipes
+- Distribuição por status
+
+### Visualizações
+
+- Gráfico de barras comparativo
+- Timeline de resoluções
+- Tabelas de resolução diária
+- Distribuição por tipo de demanda
+
+## 🔄 Pipeline de Integração Contínua
+
+### GitHub Actions
+
+```yaml
+name: Dashboard CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run tests
+      run: |
+        python -m pytest tests/
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to production
+      run: |
+        echo "Deploy steps here"
+```
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a Branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
+
+## 📧 Contato
+
+Seu Nome - [@seutwitter](https://twitter.com/seutwitter)
+
+Link do Projeto: [https://github.com/seu-usuario/ddemandreport](https://github.com/seu-usuario/ddemandreport)

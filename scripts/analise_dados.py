@@ -4,57 +4,52 @@ from datetime import datetime, timedelta
 import os
 
 def processar_planilha():
-    # Carregar dados reais da planilha
-    excel_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'docs', '_DEMANDAS DE JANEIRO_2025.xlsx')
-    df_raw = pd.read_excel(excel_path)
+    # Encontrar o arquivo Excel mais recente
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    excel_files = [f for f in os.listdir(base_dir) if f.endswith('.xlsx') and 'DEMANDAS' in f]
+    if not excel_files:
+        raise FileNotFoundError("Nenhum arquivo de demandas encontrado")
     
-    # Renomear colunas
-    df_raw.columns = ['RESPONSAVEL', 'GRUPO1', 'GRUPO2', 'GRUPO3', 'GRUPO4', 'GRUPO5', 'GRUPO6', 'GRUPO7']
+    latest_file = max(excel_files)
+    excel_path = os.path.join(base_dir, latest_file)
     
-    # Criar DataFrame processado
-    dados = []
-    data_atual = datetime.now()
+    # Carregar dados da planilha
+    df = pd.read_excel(excel_path)
     
-    # Processar cada responsável
-    for idx, row in df_raw.iterrows():
-        responsavel = row['RESPONSAVEL']
-        if pd.isna(responsavel) or responsavel == '':
-            continue
-            
-        # Processar cada grupo
-        for col in df_raw.columns[1:]:
-            grupo = row[col]
-            if pd.isna(grupo) or grupo == '':
-                continue
-                
-            # Gerar dados para o último mês
-            for i in range(30):
-                data = data_atual - timedelta(days=i)
-                status = np.random.choice(['RESOLVIDO', 'PENDENTE'], p=[0.8, 0.2])
-                tipo = np.random.choice(['RECEPTIVO', 'ATIVO'], p=[0.45, 0.55])
-                
-                dados.append({
-                    'DATA': data,
-                    'RESPONSAVEL': responsavel,
-                    'GRUPO': grupo,
-                    'STATUS': status,
-                    'TIPO': tipo,
-                    'DEMANDAS': np.random.randint(1, 10)
-                })
+    # Renomear colunas para nomes significativos
+    df.columns = ['ID', 'DATA', 'DEMANDA', 'RESPONSAVEL', 'STATUS', 'RESOLUCAO', 'OBSERVACAO', 'PRIORIDADE']
     
-    # Criar DataFrame final
-    df = pd.DataFrame(dados)
+    # Converter colunas de data
+    df['DATA'] = pd.to_datetime(df['DATA'], errors='coerce')
+    df['RESOLUCAO'] = pd.to_datetime(df['RESOLUCAO'], errors='coerce')
+    
+    # Classificar grupos
+    def classificar_grupo(responsavel):
+        if pd.isna(responsavel):
+            return 'Outros'
+        responsavel = str(responsavel).lower()
+        if responsavel in ['julio', 'antunis']:
+            return 'Grupo Julio'
+        elif responsavel in ['leandro', 'adriano']:
+            return 'Grupo Leandro/Adriano'
+        return 'Outros'
+    
+    df['GRUPO'] = df['RESPONSAVEL'].apply(classificar_grupo)
+    
+    # Adicionar coluna de tipo (mantendo compatibilidade)
+    df['TIPO'] = 'RECEPTIVO'  # Podemos ajustar isso conforme necessário
+    
     return df
 
 def analisar_dados():
     df = processar_planilha()
     
     # Cálculos gerais
-    total_demandas = df['DEMANDAS'].sum()
-    total_resolvidas = df[df['STATUS'] == 'RESOLVIDO']['DEMANDAS'].sum()
+    total_demandas = df['DEMANDA'].sum()
+    total_resolvidas = df[df['STATUS'] == 'RESOLVIDO']['DEMANDA'].sum()
     taxa_resolucao = (total_resolvidas / total_demandas * 100) if total_demandas > 0 else 0
-    total_receptivo = df[df['TIPO'] == 'RECEPTIVO']['DEMANDAS'].sum()
-    total_ativo = df[df['TIPO'] == 'ATIVO']['DEMANDAS'].sum()
+    total_receptivo = df[df['TIPO'] == 'RECEPTIVO']['DEMANDA'].sum()
+    total_ativo = df[df['TIPO'] == 'ATIVO']['DEMANDA'].sum()
     
     # Gerar insights
     insights = []
@@ -62,9 +57,9 @@ def analisar_dados():
     # Insights por equipe
     for grupo in df['GRUPO'].unique():
         df_grupo = df[df['GRUPO'] == grupo]
-        total_grupo = df_grupo['DEMANDAS'].sum()
-        resolvidas_grupo = df_grupo[df_grupo['STATUS'] == 'RESOLVIDO']['DEMANDAS'].sum()
-        receptivo_grupo = df_grupo[df_grupo['TIPO'] == 'RECEPTIVO']['DEMANDAS'].sum()
+        total_grupo = df_grupo['DEMANDA'].sum()
+        resolvidas_grupo = df_grupo[df_grupo['STATUS'] == 'RESOLVIDO']['DEMANDA'].sum()
+        receptivo_grupo = df_grupo[df_grupo['TIPO'] == 'RECEPTIVO']['DEMANDA'].sum()
         
         insights.append({
             'equipe': grupo,
@@ -106,17 +101,17 @@ def analisar_dados_por_pessoa():
         df_pessoa = df[df['RESPONSAVEL'] == pessoa]
         
         # Cálculos básicos
-        total_demandas = df_pessoa['DEMANDAS'].sum()
-        resolvidas = df_pessoa[df_pessoa['STATUS'] == 'RESOLVIDO']['DEMANDAS'].sum()
+        total_demandas = df_pessoa['DEMANDA'].sum()
+        resolvidas = df_pessoa[df_pessoa['STATUS'] == 'RESOLVIDO']['DEMANDA'].sum()
         percentual = (resolvidas / total_demandas * 100) if total_demandas > 0 else 0
         media_diaria = total_demandas / periodo_dias
         
         # Receptivo/Ativo
-        receptivo = df_pessoa[df_pessoa['TIPO'] == 'RECEPTIVO']['DEMANDAS'].sum()
-        ativo = df_pessoa[df_pessoa['TIPO'] == 'ATIVO']['DEMANDAS'].sum()
+        receptivo = df_pessoa[df_pessoa['TIPO'] == 'RECEPTIVO']['DEMANDA'].sum()
+        ativo = df_pessoa[df_pessoa['TIPO'] == 'ATIVO']['DEMANDA'].sum()
         
         # Pico de demandas
-        pico_data = df_pessoa.loc[df_pessoa['DEMANDAS'].idxmax()]
+        pico_data = df_pessoa.loc[df_pessoa['DEMANDA'].idxmax()]
         
         # Determinar equipe
         equipe = 'julio' if pessoa in ['JAIRANE', 'ANA GESSICA', 'FELIPE'] else 'adriano'
@@ -130,7 +125,7 @@ def analisar_dados_por_pessoa():
             'receptivo': int(receptivo),
             'ativo': int(ativo),
             'pico': {
-                'quantidade': int(pico_data['DEMANDAS']),
+                'quantidade': int(pico_data['DEMANDA']),
                 'data': pico_data['DATA'].strftime('%Y-%m-%d %H:%M:%S')
             }
         }
@@ -147,20 +142,20 @@ def gerar_metricas_por_responsavel():
         df_resp = df[df['RESPONSAVEL'] == responsavel]
         
         # Calcular métricas básicas
-        total_demandas = df_resp['DEMANDAS'].sum()
-        resolvidas = df_resp[df_resp['STATUS'] == 'RESOLVIDO']['DEMANDAS'].sum()
+        total_demandas = df_resp['DEMANDA'].sum()
+        resolvidas = df_resp[df_resp['STATUS'] == 'RESOLVIDO']['DEMANDA'].sum()
         taxa_resolucao = (resolvidas / total_demandas * 100) if total_demandas > 0 else 0
         
         # Calcular receptivo/ativo
-        receptivo = df_resp[df_resp['TIPO'] == 'RECEPTIVO']['DEMANDAS'].sum()
-        ativo = df_resp[df_resp['TIPO'] == 'ATIVO']['DEMANDAS'].sum()
+        receptivo = df_resp[df_resp['TIPO'] == 'RECEPTIVO']['DEMANDA'].sum()
+        ativo = df_resp[df_resp['TIPO'] == 'ATIVO']['DEMANDA'].sum()
         
         # Calcular média diária
         dias_ativos = len(df_resp['DATA'].unique())
         media_diaria = total_demandas / dias_ativos if dias_ativos > 0 else 0
         
         # Encontrar pico de demandas
-        demandas_por_dia = df_resp.groupby('DATA')['DEMANDAS'].sum()
+        demandas_por_dia = df_resp.groupby('DATA')['DEMANDA'].sum()
         pico_data = demandas_por_dia.idxmax()
         pico_quantidade = demandas_por_dia.max()
         

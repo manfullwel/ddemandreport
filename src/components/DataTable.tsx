@@ -1,4 +1,3 @@
-import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import { Contract, Employee } from '../types/spreadsheet';
 import { Badge } from './ui/badge';

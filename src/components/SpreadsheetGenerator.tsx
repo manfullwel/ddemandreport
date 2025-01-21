@@ -1,5 +1,4 @@
-import React from 'react';
-import { Button } from './ui/button';
+wimport { Button } from './ui/button';
 import { generateSpreadsheetData } from '../utils/mockDataGenerator';
 import { exportToExcel } from '../utils/excelExporter';
 import { toast } from './ui/use-toast';

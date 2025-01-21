@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Dashboard } from './pages/Dashboard';
 import { TeamAnalysis } from './pages/TeamAnalysis';
 import { DailyAnalysis } from './pages/DailyAnalysis';
+import DemandDashboard from './components/DemandDashboard';
 
 function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   const location = useLocation();
@@ -54,7 +55,7 @@ function ErrorPage() {
 
 export function AppRoutes() {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="min-h-screen bg-gray-100">
         {/* Navigation */}
         <nav className="bg-white shadow-lg">
@@ -68,6 +69,7 @@ export function AppRoutes() {
                   <NavLink to="/">Dashboard</NavLink>
                   <NavLink to="/team">Análise por Equipe</NavLink>
                   <NavLink to="/daily">Análise Diária</NavLink>
+                  <NavLink to="/demand">Demandas</NavLink>
                 </div>
               </div>
             </div>
@@ -80,10 +82,11 @@ export function AppRoutes() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/team" element={<TeamAnalysis />} />
             <Route path="/daily" element={<DailyAnalysis />} />
+            <Route path="/demand" element={<DemandDashboard />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </main>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }

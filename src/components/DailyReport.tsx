@@ -1,17 +1,16 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import { DailyReport as DailyReportType, Demanda } from '@/types/report';
+import { DailyReport as DailyReportType, Demand } from '@/types/report';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import { Download } from 'lucide-react';
 import { DemandasTable } from './DemandasTable';
 
 interface RouteContext {
   data: DailyReportType[];
-  demandas: Demanda[];
+  demandas: Demand[];
   fileName?: string;
 }
 
