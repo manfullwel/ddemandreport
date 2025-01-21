@@ -84,6 +84,21 @@ jobs:
         name: dist
         path: dist/
 
+  deploy-docs:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: gh-pages
+        folder: docs
+        clean: true
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
