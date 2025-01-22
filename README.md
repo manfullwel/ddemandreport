@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Dashboard Preview](docs/screenshots/dashboard.png)
+![Dashboard Preview](docs/screenshots/dashboard.svg)
 
 [![CI/CD](https://github.com/manfullwel/ddemandreport/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/manfullwel/ddemandreport/actions/workflows/ci-cd.yml)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
