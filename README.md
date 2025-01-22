@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Dashboard Preview](docs/screenshots/dashboard.svg)
-
 [![CI/CD](https://github.com/manfullwel/ddemandreport/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/manfullwel/ddemandreport/actions/workflows/ci-cd.yml)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
 [![Dash](https://img.shields.io/badge/dash-2.14.2-blue)](https://dash.plotly.com/)
@@ -11,11 +9,11 @@
 
 </div>
 
-## 📊 Visão Geral
+## Visão Geral
 
 Dashboard profissional para análise e acompanhamento de demandas, desenvolvido com Python e Dash. Oferece uma interface moderna e intuitiva para visualização e análise de dados em tempo real.
 
-### ✨ Características Principais
+### Características Principais
 
 - **Interface Moderna**
   - Design responsivo e profissional
@@ -32,7 +30,7 @@ Dashboard profissional para análise e acompanhamento de demandas, desenvolvido 
   - Análise por grupo e responsável
   - Métricas de performance
 
-## 🚀 Começando
+## Começando
 
 ### Pré-requisitos
 
@@ -60,7 +58,7 @@ python app.py
 
 4. Acesse o dashboard em: http://localhost:8050
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 - **Frontend**
   - [Dash](https://dash.plotly.com/) - Framework para criação de aplicações web analíticas
@@ -72,7 +70,7 @@ python app.py
   - [Pandas](https://pandas.pydata.org/) - Manipulação e análise de dados
   - [NumPy](https://numpy.org/) - Computação numérica
 
-## 📈 Funcionalidades
+## Funcionalidades
 
 ### Filtros Avançados
 - Seleção de período
@@ -92,7 +90,7 @@ python app.py
 - Performance por grupo
 - Métricas por responsável
 
-## 🤝 Contribuindo
+## Contribuindo
 
 1. Fork o projeto
 2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -100,11 +98,11 @@ python app.py
 4. Push para a Branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
-## 📝 Licença
+## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 📧 Contato
+## Contato
 
 Seu Nome - [@seutwitter](https://twitter.com/seutwitter)
 
