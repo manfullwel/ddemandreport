@@ -58,12 +58,20 @@ Para configurar a integração com o Google Sheets, siga estes passos:
    - Ajuste o range conforme sua estrutura de dados
 
 3. **Estrutura da Planilha**:
-   A planilha deve ter as seguintes colunas:
-   - Colaborador
-   - Data
-   - Status (Resolvido/Pendente)
-   - Tipo (Receptivo/Ativo)
-   - Equipe (Julio/Adriano)
+   A planilha do Google Sheets deve ter as seguintes colunas:
+
+| Coluna | Descrição | Valores Aceitos |
+|--------|-----------|-----------------|
+| Colaborador | Nome do colaborador responsável | Texto |
+| Data | Data do registro | Data (DD/MM/YYYY) |
+| Status | Estado atual da demanda | RESOLVIDOS<br>PENDENTE ATIVO<br>PENDENTE RECEPTIVO<br>PRIORIDADE<br>PRIORIDADE TOTAL<br>SOMA DAS PRIORIDADES<br>ANÁLISE<br>ANÁLISE DO DIA<br>RECEPTIVO<br>QUITADO CLIENTE<br>QUITADO<br>APROVADOS |
+| Tipo | Tipo de atendimento | Receptivo, Ativo |
+| Equipe | Equipe responsável | JULIO, LEANDROADRIANO |
+
+> ⚠️ **Importante**: 
+> - Mantenha exatamente os mesmos nomes de colunas e valores aceitos para garantir o funcionamento correto do dashboard
+> - Os status devem ser escritos exatamente como mostrado acima, incluindo maiúsculas e acentuação
+> - A classificação correta do status é essencial para a geração precisa dos relatórios
 
 4. **Compartilhamento**:
    - Certifique-se de que a planilha está compartilhada com permissão de leitura
