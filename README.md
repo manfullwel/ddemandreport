@@ -6,16 +6,16 @@ Dashboard profissional para análise e monitoramento de demandas, com foco em m�
 
 ## 🔗 Links Importantes
 
-- **[Dashboard](https://manfullwel.github.io/ddemandreport/docs/index.html)**: Acesse o dashboard em funcionamento
+- **[Dashboard](https://manfullwel.github.io/ddemandreport/)**: Acesse o dashboard em funcionamento
 - **[Repositório](https://github.com/manfullwel/ddemandreport)**: Código fonte do projeto
-- **[Relatório Diário](https://manfullwel.github.io/ddemandreport/docs/index.html#relatorio)**: Relatório atualizado diariamente
+- **[Relatório Diário](https://manfullwel.github.io/ddemandreport/)**: Relatório atualizado diariamente
 
 ## 🌐 Páginas do Projeto
 
 | Página | Link | Descrição |
 |--------|------|-----------|
-| 📊 **Dashboard** | [Acessar Dashboard](https://manfullwel.github.io/ddemandreport/docs/index.html) | Dashboard principal com todas as métricas |
-| 📝 **Relatório Diário** | [Ver Relatório](https://manfullwel.github.io/ddemandreport/docs/index.html#relatorio) | Relatório atualizado diariamente |
+| 📊 **Dashboard** | [Ver Dashboard](https://manfullwel.github.io/ddemandreport/) | Dashboard principal |
+| 📝 **Relatório Diário** | [Ver Relatório](https://manfullwel.github.io/ddemandreport/) | Relatório atualizado diariamente |
 | 💻 **Código Fonte** | [GitHub](https://github.com/manfullwel/ddemandreport) | Repositório do projeto |
 
 ## 👤 Autor
@@ -483,3 +483,15 @@ python scripts/api_server.py
 2. Em outro terminal, executar o script de captura:
 ```bash
 python scripts/capture_screenshots.py
+```
+
+## 📚 Manual de Instalação
+
+Para uma instalação passo a passo detalhada, com instruções para usuários iniciantes, acesse nosso [Manual Interativo](https://manfullwel.github.io/ddemandreport/manual.html).
+
+Este manual inclui:
+- ✅ Guia visual passo a passo
+- ⚠️ Alertas importantes em cada etapa
+- 🔒 Instruções detalhadas para configuração do Google Cloud
+- 📝 Checklist de requisitos
+- 🎯 Confirmação de sucesso em cada etapa
