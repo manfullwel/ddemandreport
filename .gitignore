@@ -38,3 +38,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Data files
+*.csv
+!data/example_data.csv  # Permitir arquivo de exemplo
